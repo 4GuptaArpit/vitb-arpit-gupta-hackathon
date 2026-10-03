@@ -1,0 +1,362 @@
+[
+  {
+    "id": "news_001",
+    "source": "Reuters",
+    "timestamp": "2026-09-28T08:30:00Z",
+    "ticker": "AAPL",
+    "headline": "European Commission expands antitrust scrutiny over App Store in-app purchase commissions",
+    "body": "EU antitrust regulators have intensified their formal investigation into Apple's digital distribution policies, warning of potential non-compliance fines.",
+    "event_hint": "Regulatory"
+  },
+  {
+    "id": "news_002",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-28T09:15:00Z",
+    "ticker": "MSFT",
+    "headline": "Microsoft launches next-generation enterprise Copilot AI architecture with global cloud integrations",
+    "body": "Microsoft announced expanded enterprise subscriptions for its AI cloud infrastructure, accelerating commercial bookings across multinational clients.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_003",
+    "source": "Financial Times",
+    "timestamp": "2026-09-28T10:00:00Z",
+    "ticker": "XOM",
+    "headline": "Middle East naval tensions trigger crude shipping disruptions and insurance rate surge",
+    "body": "Escalating maritime conflicts near key strait transit corridors have heightened geopolitical risk premiums, impacting global energy tanker routing.",
+    "event_hint": "Geopolitical"
+  },
+  {
+    "id": "news_004",
+    "source": "Wall Street Journal",
+    "timestamp": "2026-09-28T10:45:00Z",
+    "ticker": "JPM",
+    "headline": "Federal Reserve signals sticky inflation pressures, pushing back benchmark rate reduction timeline",
+    "body": "Central bank governors emphasized that persistent core services inflation will likely necessitate restrictive policy rates through upcoming quarters.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_005",
+    "source": "Reuters",
+    "timestamp": "2026-09-28T11:20:00Z",
+    "ticker": "BA",
+    "headline": "Aviation suppliers face quality review delays following critical assembly inspection notices",
+    "body": "Boeing and regional tier-one suppliers are conducting safety audits following component tolerances review, impacting delivery schedules.",
+    "event_hint": "Regulatory"
+  },
+  {
+    "id": "news_006",
+    "source": "CNBC",
+    "timestamp": "2026-09-28T12:05:00Z",
+    "ticker": "NVDA",
+    "headline": "Nvidia reveals high-throughput Blackwell chip shipment milestones exceeding analyst estimates",
+    "body": "Surging hyperscaler capital expenditures have propelled data center hardware backlog, boosting operating margin forecasts.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_007",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-28T12:40:00Z",
+    "ticker": "WBD",
+    "headline": "Credit rating agency places entertainment conglomerate debt on negative outlook amid cash flow drag",
+    "body": "Ratings analysts raised concerns regarding legacy cable subscriber declines and heavy upcoming debt maturities requiring refinancing.",
+    "event_hint": "Credit Event"
+  },
+  {
+    "id": "news_008",
+    "source": "Reuters",
+    "timestamp": "2026-09-28T13:10:00Z",
+    "ticker": "GOOGL",
+    "headline": "Google announces definitive agreement to acquire cybersecurity automation leader for $12 billion",
+    "body": "Alphabet seeks to bolster Google Cloud security posture against complex multi-cloud enterprise threats through strategic cash acquisition.",
+    "event_hint": "Merger/Acquisition"
+  },
+  {
+    "id": "news_009",
+    "source": "Associated Press",
+    "timestamp": "2026-09-28T13:50:00Z",
+    "ticker": "TSLA",
+    "headline": "Automotive regulators mandate software callback review for driver assistance features in European market",
+    "body": "Transport safety regulators requested verification of autonomous driver-monitoring alerts across 400,000 recently imported vehicles.",
+    "event_hint": "Regulatory"
+  },
+  {
+    "id": "news_010",
+    "source": "MarketWatch",
+    "timestamp": "2026-09-28T14:25:00Z",
+    "ticker": "DISH",
+    "headline": "Satellite provider triggers debt exchange offer as bondholders negotiate maturity extensions",
+    "body": "Creditors are evaluating distressed exchange terms offering discounted senior secured notes in exchange for pushed back unsecured maturities.",
+    "event_hint": "Credit Event"
+  },
+  {
+    "id": "news_011",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-28T15:00:00Z",
+    "ticker": "CVX",
+    "headline": "OPEC+ delegates review voluntary crude quota compliance amid shifting demand trajectories",
+    "body": "Energy ministers convened for monitoring discussions as oil benchmarks fluctuated in response to global manufacturing PMI figures.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_012",
+    "source": "Financial Times",
+    "timestamp": "2026-09-28T15:35:00Z",
+    "ticker": "AMZN",
+    "headline": "Amazon Web Services signs landmark sovereign cloud infrastructure partnerships in Asia-Pacific",
+    "body": "The multi-year governmental agreement will expand regional data sovereignty compliance while providing compute for national research initiatives.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_013",
+    "source": "Reuters",
+    "timestamp": "2026-09-28T16:15:00Z",
+    "ticker": "UNH",
+    "headline": "Healthcare administrative review board proposes tighter restrictions on prior authorization denials",
+    "body": "Proposed healthcare guidelines aim to streamline claims approval timelines, requiring medical insurers to increase adjudication transparency.",
+    "event_hint": "Regulatory"
+  },
+  {
+    "id": "news_014",
+    "source": "Wall Street Journal",
+    "timestamp": "2026-09-28T16:50:00Z",
+    "ticker": "INTC",
+    "headline": "Semiconductor manufacturer pauses European foundry expansion schedule pending subsidy approvals",
+    "body": "Capital expenditure re-phasing reflects slower semiconductor market recovery and negotiations over regional state-aid co-funding.",
+    "event_hint": "Credit Event"
+  },
+  {
+    "id": "news_015",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-28T17:20:00Z",
+    "ticker": "META",
+    "headline": "Meta Platforms reveals generative spatial video engine integration across mixed-reality hardware",
+    "body": "Company demonstrates developer preview of real-time neural rendering algorithms for next-generation smart glasses and headsets.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_016",
+    "source": "Reuters",
+    "timestamp": "2026-09-28T18:00:00Z",
+    "ticker": "OXY",
+    "headline": "Permian Basin consolidation continues with carbon management joint venture transaction",
+    "body": "Energy producers partner to scale regional direct air capture infrastructure supported by federal carbon sequestration tax credits.",
+    "event_hint": "Merger/Acquisition"
+  },
+  {
+    "id": "news_017",
+    "source": "Financial Times",
+    "timestamp": "2026-09-28T18:40:00Z",
+    "ticker": "BAC",
+    "headline": "Commercial real estate loan provisions rise across regional banking syndicates",
+    "body": "Banking supervisors advise lenders to stress test office property exposure portfolios as vacancy rates remain historically elevated.",
+    "event_hint": "Credit Event"
+  },
+  {
+    "id": "news_018",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-28T19:10:00Z",
+    "ticker": "CAT",
+    "headline": "Heavy machinery order book expands across emerging market infrastructure projects",
+    "body": "Mining and construction equipment demand showed resilience in Latin America and Southeast Asia, offsetting domestic residential cooling.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_019",
+    "source": "Reuters",
+    "timestamp": "2026-09-28T19:45:00Z",
+    "ticker": "PFE",
+    "headline": "Phase 3 clinical trial for novel autoimmune therapy achieves primary endpoints with strong tolerability",
+    "body": "Pfizer announced statistically significant therapeutic outcomes in late-stage trials, setting up regulatory submission for late 2026.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_020",
+    "source": "Wall Street Journal",
+    "timestamp": "2026-09-28T20:15:00Z",
+    "ticker": "DIS",
+    "headline": "Media conglomerate finalizes buyout of remaining minority streaming stakes to consolidate assets",
+    "body": "The transaction simplifies corporate governance and enables unified advertising sales across direct-to-consumer digital channels.",
+    "event_hint": "Merger/Acquisition"
+  },
+  {
+    "id": "news_021",
+    "source": "Financial Times",
+    "timestamp": "2026-09-29T08:10:00Z",
+    "ticker": "ZIM",
+    "headline": "Red Sea shipping diversions add 14 days to transit cycles, driving container spot freight rates higher",
+    "body": "Global container lines continue routing around the Cape of Good Hope, escalating fuel expenditures and altering port dwell times.",
+    "event_hint": "Geopolitical"
+  },
+  {
+    "id": "news_022",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-29T08:45:00Z",
+    "ticker": "WMT",
+    "headline": "Retail giant reports steady consumer transaction volumes alongside private-label grocery expansion",
+    "body": "Strong inventory management and automated supply chain distribution centers protected operating margins amid inflation headwinds.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_023",
+    "source": "Reuters",
+    "timestamp": "2026-09-29T09:20:00Z",
+    "ticker": "SNOW",
+    "headline": "Cloud data warehousing company announces enterprise acquisition to incorporate AI agents",
+    "body": "Acquisition aims to accelerate automated data pipeline capabilities and semantic querying across unstructured customer repositories.",
+    "event_hint": "Merger/Acquisition"
+  },
+  {
+    "id": "news_024",
+    "source": "CNBC",
+    "timestamp": "2026-09-29T09:55:00Z",
+    "ticker": "V",
+    "headline": "Cross-border payment flows rebound as international travel volumes exceed pre-pandemic peaks",
+    "body": "Visa reported strong international spending volumes, driven by travel across European and Asian corridors during peak seasonal quarters.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_025",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-29T10:30:00Z",
+    "ticker": "FCX",
+    "headline": "Copper mine operations interrupted by regional labor negotiations in South America",
+    "body": "Supply disruptions in copper concentrate output sparked supply concerns across global refined metal spot markets.",
+    "event_hint": "Geopolitical"
+  },
+  {
+    "id": "news_026",
+    "source": "Reuters",
+    "timestamp": "2026-09-29T11:00:00Z",
+    "ticker": "PG",
+    "headline": "Consumer staple manufacturer raises full-year organic revenue guidance on premium brand resilience",
+    "body": "Pricing power in personal health and home care products supported gross margin expansion despite elevated raw material costs.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_027",
+    "source": "Wall Street Journal",
+    "timestamp": "2026-09-29T11:35:00Z",
+    "ticker": "NEE",
+    "headline": "Clean energy utility secures grid interconnection approvals for 2.5GW solar and battery storage projects",
+    "body": "Regulatory approvals support transmission investments to integrate renewable capacity across Southeastern power markets.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_028",
+    "source": "Financial Times",
+    "timestamp": "2026-09-29T12:15:00Z",
+    "ticker": "MAR",
+    "headline": "Luxury lodging demand tempers slightly as corporate travel booking budgets tighten for Q4",
+    "body": "Hotel operator observes moderation in average daily room rates in metropolitan hubs while resort occupancy holds steady.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_029",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-29T12:50:00Z",
+    "ticker": "LMT",
+    "headline": "Defense contractor awarded $4.5 billion missile defense procurement contract extension",
+    "body": "Department of Defense procurement contract underscores long-term modernization efforts across interceptor production lines.",
+    "event_hint": "Geopolitical"
+  },
+  {
+    "id": "news_030",
+    "source": "Reuters",
+    "timestamp": "2026-09-29T13:25:00Z",
+    "ticker": "UPS",
+    "headline": "Logistics provider completes transition to dynamic AI route optimization network",
+    "body": "System rollout lowers package sorting times and optimizes delivery vehicle routing efficiency across North American distribution hubs.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_031",
+    "source": "Wall Street Journal",
+    "timestamp": "2026-09-29T14:00:00Z",
+    "ticker": "T",
+    "headline": "Telecom debt refinancing executed at favorable spreads following fiber subscriber additions",
+    "body": "AT&T successfully placed $3 billion in senior notes, extending liability maturities while lowering weighted average borrowing costs.",
+    "event_hint": "Credit Event"
+  },
+  {
+    "id": "news_032",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-29T14:35:00Z",
+    "ticker": "F",
+    "headline": "Automaker recalibrates electric vehicle investment roadmap, prioritizing hybrid vehicle platforms",
+    "body": "Capital re-allocation matches consumer adoption patterns, reducing battery plant capex while expanding hybrid production capacity.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_033",
+    "source": "Financial Times",
+    "timestamp": "2026-09-29T15:10:00Z",
+    "ticker": "PLD",
+    "headline": "Industrial real estate trust reports warehouse leasing renewal rates near record highs",
+    "body": "Prologis cited persistent demand for urban infill logistics properties driven by e-commerce fulfillment and inventory nearshoring.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_034",
+    "source": "Reuters",
+    "timestamp": "2026-09-29T15:45:00Z",
+    "ticker": "AWK",
+    "headline": "Municipal utility commission approves multi-year infrastructure capital improvement rate base",
+    "body": "Rate adjustment enables American Water Works to replace aging water mains and modernize treatment facilities across state districts.",
+    "event_hint": "Regulatory"
+  },
+  {
+    "id": "news_035",
+    "source": "MarketWatch",
+    "timestamp": "2026-09-29T16:20:00Z",
+    "ticker": "C",
+    "headline": "Citigroup simplifies global operational footprint with divestiture of non-core consumer operations",
+    "body": "Banking group completes another phase of strategic corporate restructuring to improve return on tangible common equity.",
+    "event_hint": "Merger/Acquisition"
+  },
+  {
+    "id": "news_036",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-29T16:55:00Z",
+    "ticker": "HD",
+    "headline": "Home improvement retailer notices moderation in large-scale residential renovation projects",
+    "body": "Elevated mortgage rates continue to dampen housing turnover, prompting consumers to defer discretionary remodeling expenditures.",
+    "event_hint": "Macroeconomic"
+  },
+  {
+    "id": "news_037",
+    "source": "Reuters",
+    "timestamp": "2026-09-29T17:30:00Z",
+    "ticker": "ABBV",
+    "headline": "Patent litigation settlement secures biosimilar entry timeline predictability for key oncology franchise",
+    "body": "AbbVie resolved global exclusivity claims, providing commercial visibility into royalty structures and market share expectations.",
+    "event_hint": "Regulatory"
+  },
+  {
+    "id": "news_038",
+    "source": "Financial Times",
+    "timestamp": "2026-09-29T18:05:00Z",
+    "ticker": "MRK",
+    "headline": "Merck initiates collaborative oncology pipeline buyout to expand antibody drug conjugate therapies",
+    "body": "The $4 billion partnership bolsters next-generation solid tumor candidate pipeline ahead of anticipated decade-end patent expirations.",
+    "event_hint": "Merger/Acquisition"
+  },
+  {
+    "id": "news_039",
+    "source": "Wall Street Journal",
+    "timestamp": "2026-09-29T18:40:00Z",
+    "ticker": "LLY",
+    "headline": "Eli Lilly opens state-of-the-art automated manufacturing facility to meet global peptide drug demand",
+    "body": "The multibillion-dollar campus doubles production capacity for metabolic therapies, relieving global prescription supply bottlenecks.",
+    "event_hint": "Product Launch"
+  },
+  {
+    "id": "news_040",
+    "source": "Bloomberg",
+    "timestamp": "2026-09-29T19:15:00Z",
+    "ticker": "TGT",
+    "headline": "Retailer navigates inventory shrink headwinds with improved physical store monitoring technologies",
+    "body": "Target deployed automated asset protection and supply chain inventory tagging to curtail store losses and improve product availability.",
+    "event_hint": "Credit Event"
+  }
+]

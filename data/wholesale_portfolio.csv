@@ -1,0 +1,31 @@
+position_id,asset_type,counterparty,sector,ticker_proxy,notional_usd,credit_rating,tenor_years,coupon_rate_pct,current_mv_usd,pd_baseline_pct,lgd_pct
+LN_001,Corporate Loan,Apex Telecom Corp,Telecommunications,T,65000000,BBB+,5.0,5.75,64200000,0.65,45.0
+LN_002,Corporate Loan,Nova Industrial Logistics,Logistics,UPS,45000000,A-,3.5,5.20,44800000,0.35,40.0
+LN_003,Corporate Loan,Helios Clean Energy,Utilities,NEE,50000000,BBB,4.0,5.90,49100000,0.85,50.0
+LN_004,Corporate Loan,Titan Heavy Engineering,Industrials,CAT,75000000,A,6.0,4.95,74500000,0.25,35.0
+LN_005,Corporate Loan,Vanguard Semi Systems,Semiconductors,NVDA,80000000,AA-,3.0,4.50,79800000,0.12,30.0
+LN_006,Corporate Loan,Aura Health Network,Healthcare,UNH,55000000,A+,4.5,4.80,54700000,0.18,35.0
+LN_007,Corporate Loan,Meridian Retail Holdings,Consumer Staples,WMT,40000000,AA,5.0,4.40,39900000,0.10,30.0
+LN_008,Corporate Loan,Pacific Sky Aerospace,Aerospace & Defense,BA,60000000,BBB-,7.0,6.40,58200000,1.25,55.0
+LN_009,Corporate Loan,Zephyr Maritime Shipping,Maritime Transport,ZIM,30000000,BB+,2.5,7.10,29100000,2.10,60.0
+LN_010,Corporate Loan,Frontier Auto Dynamics,Automotive,TSLA,50000000,BBB,4.0,5.80,49300000,0.90,50.0
+LN_011,Corporate Loan,Summit Cloud Infra,Information Technology,MSFT,85000000,AAA,5.0,4.10,84900000,0.05,25.0
+LN_012,Corporate Loan,Pinnacle Financial Services,Financial Services,JPM,70000000,A+,3.0,4.65,69800000,0.15,35.0
+BD_001,Investment Grade Bond,Global Media Ventures,Communications,DIS,35000000,A-,7.0,5.15,34400000,0.40,40.0
+BD_002,Investment Grade Bond,Vertex Pharmaceuticals,Healthcare,PFE,40000000,A,5.0,4.75,39700000,0.22,35.0
+BD_003,Investment Grade Bond,Beacon Oil & Gas,Energy,XOM,50000000,AA-,10.0,5.30,49100000,0.14,35.0
+BD_004,Investment Grade Bond,Cascade Water Utilities,Utilities,AWK,25000000,A+,6.0,4.85,24800000,0.16,35.0
+BD_005,Investment Grade Bond,Orion Consumer Brands,Consumer Goods,PG,30000000,AA,4.0,4.35,29900000,0.09,30.0
+BD_006,Investment Grade Bond,Krypton Micro Devices,Semiconductors,INTC,35000000,BBB+,5.5,5.65,34100000,0.70,45.0
+BD_007,Investment Grade Bond,Atlas Commercial REIT,Real Estate,PLD,20000000,BBB,8.0,6.10,19300000,0.95,50.0
+BD_008,Investment Grade Bond,Strata Mining Corp,Materials,FCX,25000000,BBB-,6.5,6.35,24200000,1.15,50.0
+HY_001,High Yield Bond,Cobalt Shale Exploration,Energy,OXY,15000000,BB,4.0,7.80,14300000,2.80,60.0
+HY_002,High Yield Bond,Crestview Hospitality Group,Consumer Discretionary,MAR,18000000,BB-,3.5,8.10,17100000,3.40,65.0
+HY_003,High Yield Bond,Falcon Satellite Broadband,Telecom,DISH,12000000,B+,5.0,8.90,11000000,4.90,70.0
+HY_004,High Yield Bond,Starlight Entertainment,Media & Entertainment,WBD,14000000,BB,4.5,7.60,13400000,2.60,60.0
+HY_005,High Yield Bond,Venture Tech Incubator,Information Technology,SNOW,10000000,B,3.0,9.25,9200000,5.50,70.0
+CD_001,Credit Default Swap,Northstar Sovereign Fund,Financials,C,20000000,A,3.0,1.15,19800000,0.25,40.0
+CD_002,Credit Default Swap,Oasis Petrochem Protection,Energy,CVX,25000000,AA,5.0,0.85,24900000,0.10,35.0
+CD_003,Credit Default Swap,Zenith Automotive Syndicate,Automotive,F,15000000,BBB-,2.0,1.75,14600000,1.20,50.0
+CD_004,Credit Default Swap,Omni Retail Defense,Consumer Discretionary,TGT,10000000,A-,4.0,1.05,9850000,0.38,40.0
+CD_005,Credit Default Swap,Aero Defense Risk Transfer,Aerospace & Defense,LMT,15000000,AA-,3.0,0.90,14900000,0.12,35.0

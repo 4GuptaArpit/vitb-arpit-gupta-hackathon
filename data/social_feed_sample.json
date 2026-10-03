@@ -1,0 +1,542 @@
+[
+  {
+    "id": "soc_001",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T08:45:00Z",
+    "ticker": "AAPL",
+    "text": "$AAPL Brussels antitrust fines always sound scary, but remember they have $60B+ net cash flow. Dip buying opportunity if it drops 3%.",
+    "likes": 84,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_002",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T09:30:00Z",
+    "ticker": "MSFT",
+    "text": "Enterprise IT chiefs rolling out Copilot everywhere. Azure run-rate looking unstoppable this quarter $MSFT 🚀",
+    "likes": 215,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_003",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T10:15:00Z",
+    "ticker": "XOM",
+    "text": "Strait shipping risk premium jumping. Brent crude pushing $88/bbl. $XOM and $CVX cash printing machines back on.",
+    "likes": 130,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_004",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T10:55:00Z",
+    "ticker": "JPM",
+    "text": "Higher for longer rates mean Net Interest Income stays elevated for megabanks. $JPM leading the pack, pristine fortress balance sheet.",
+    "likes": 178,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_005",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T11:40:00Z",
+    "ticker": "BA",
+    "text": "$BA Delivery delays again? Supply chain bottlenecks are becoming chronic. Cash burn will stay negative for another two quarters.",
+    "likes": 92,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_006",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T12:20:00Z",
+    "ticker": "NVDA",
+    "text": "Blackwell enterprise allocation completely sold out through mid-2027. Forward PE actually looks reasonable on $NVDA earnings power.",
+    "likes": 512,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_007",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T12:55:00Z",
+    "ticker": "WBD",
+    "text": "$WBD Rating downgrade watch is bad news. Heavy leverage + declining linear TV revenue = forced asset divestiture ahead.",
+    "likes": 74,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_008",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T13:25:00Z",
+    "ticker": "GOOGL",
+    "text": "Strategic cybersecurity M&A is exactly what Google Cloud needed to win enterprise contracts against AWS. Smart move $GOOGL.",
+    "likes": 164,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_009",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T14:05:00Z",
+    "ticker": "TSLA",
+    "text": "$TSLA European safety inquiries are just routine regulatory noise. Full self driving fleet miles are doubling every 4 months.",
+    "likes": 320,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_010",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T14:40:00Z",
+    "ticker": "DISH",
+    "text": "$DISH Bondholders demanding steep hair-cuts on the 2026 maturities. Restructuring or Chapter 11 risk increasing rapidly.",
+    "likes": 88,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_011",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T15:15:00Z",
+    "ticker": "CVX",
+    "text": "OPEC compliance holding firm. Upstream free cash flow yields on $CVX are above 8%. Great defensive dividend shelter.",
+    "likes": 95,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_012",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T15:50:00Z",
+    "ticker": "AMZN",
+    "text": "AWS APAC sovereign contracts prove cloud tailwinds are accelerating globally. Operating income will beat guidance easily $AMZN.",
+    "likes": 240,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_013",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T16:30:00Z",
+    "ticker": "UNH",
+    "text": "$UNH Prior authorization regulatory tightening could clip medical loss ratios by 40-50bps. Margins under slight pressure.",
+    "likes": 61,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_014",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T17:05:00Z",
+    "ticker": "INTC",
+    "text": "$INTC Pausing European fabs makes sense. Stop burning capital until foundry customer commitments are signed and verified.",
+    "likes": 115,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_015",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T17:40:00Z",
+    "ticker": "META",
+    "text": "Meta's spatial video demo is slick. Hardware segment losses narrowing while core digital ad revenue compounds at 19% YoY $META.",
+    "likes": 310,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_016",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T18:15:00Z",
+    "ticker": "OXY",
+    "text": "$OXY Carbon direct air capture is the long term ESG play Berkshire saw. Low break-even in the Permian keeps downside protected.",
+    "likes": 82,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_017",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T18:55:00Z",
+    "ticker": "BAC",
+    "text": "$BAC Commercial real estate provisions are well covered by excess reserves. Tier 1 capital ratio at 11.8% is bulletproof.",
+    "likes": 104,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_018",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T19:25:00Z",
+    "ticker": "CAT",
+    "text": "Global infrastructure demand is a real secular trend. $CAT order book is the ultimate barometer for global heavy equipment spending.",
+    "likes": 145,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_019",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-28T20:00:00Z",
+    "ticker": "PFE",
+    "text": "$PFE Phase 3 trial victory for autoimmune pipeline! Stock has been beaten down all year, huge catalyst for multiple expansion.",
+    "likes": 190,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_020",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-28T20:30:00Z",
+    "ticker": "DIS",
+    "text": "Direct to consumer streaming finally turning solidly profitable for $DIS. Bundling ad tier is driving ARPU growth.",
+    "likes": 220,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_021",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T08:25:00Z",
+    "ticker": "ZIM",
+    "text": "$ZIM Spot container shipping rates up 12% week over week. Geopolitical rerouting means elevated charter rates will last through winter.",
+    "likes": 140,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_022",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T09:00:00Z",
+    "ticker": "WMT",
+    "text": "Walmart's grocery price moat is widening against competitors. Middle income shoppers trading down into Great Value brand $WMT.",
+    "likes": 165,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_023",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T09:35:00Z",
+    "ticker": "SNOW",
+    "text": "$SNOW Smart AI agent tuck-in acquisition. Need to see consumption metrics stabilize before jumping back into software multiples.",
+    "likes": 77,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_024",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T10:10:00Z",
+    "ticker": "V",
+    "text": "$V High-margin cross border travel payment volume surging. Inflation is actually a tailwind when you take a cut of gross transaction value.",
+    "likes": 182,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_025",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T10:45:00Z",
+    "ticker": "FCX",
+    "text": "Copper supply tightness is real. South American mine labor stoppages will tighten global refined cathode inventories $FCX.",
+    "likes": 98,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_026",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T11:15:00Z",
+    "ticker": "PG",
+    "text": "$PG Raising full year guidance again. When consumers love Tide and Pampers, they pay whatever price is on the shelf. Reliable compounding.",
+    "likes": 112,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_027",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T11:50:00Z",
+    "ticker": "NEE",
+    "text": "2.5GW grid connection approval is huge for $NEE. Big tech data center energy demand will require massive clean power PPAs.",
+    "likes": 175,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_028",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T12:30:00Z",
+    "ticker": "MAR",
+    "text": "$MAR Corporate travel expense budgets being scrutinized into year-end. Expecting lower RevPAR growth in urban commercial hotels.",
+    "likes": 55,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_029",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T13:05:00Z",
+    "ticker": "LMT",
+    "text": "Pentagon budget modernization continues to prioritize interceptor stockpiles. Backlog at $160B provides multi-year dividend visibility $LMT.",
+    "likes": 204,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_030",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T13:40:00Z",
+    "ticker": "UPS",
+    "text": "$UPS AI route optimization rolling out nationwide. Cutting 5-8% off vehicle transit hours translates to hundreds of millions in operating margin.",
+    "likes": 128,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_031",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T14:15:00Z",
+    "ticker": "T",
+    "text": "$T Great execution on the $3B refinancing tranche. Spreads narrowed significantly compared to last year. Debt paydown trajectory on track.",
+    "likes": 90,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_032",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T14:50:00Z",
+    "ticker": "F",
+    "text": "Ford pivoting to hybrids is a masterstroke. Preserves cash flow, cuts heavy EV losses, and meets practical consumer demand $F.",
+    "likes": 188,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_033",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T15:25:00Z",
+    "ticker": "PLD",
+    "text": "$PLD Warehouse leasing remains tight in major port and rail metros. Industrial REIT fundamentals remain among strongest in commercial real estate.",
+    "likes": 76,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_034",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T16:00:00Z",
+    "ticker": "AWK",
+    "text": "$AWK Rate case settlement approved without friction. Regulated water utilities provide the ultimate non-cyclical cash flow stream.",
+    "likes": 64,
+    "user_reputation": "low"
+  },
+  {
+    "id": "soc_035",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T16:35:00Z",
+    "ticker": "C",
+    "text": "Fraser's turnaround at Citi is showing tangible results. Asset sales simplifying the bank and driving ROTCE closer to peer averages $C.",
+    "likes": 142,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_036",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T17:10:00Z",
+    "ticker": "HD",
+    "text": "$HD Big renovation spending paused as homeowners lock into their existing 3% mortgages. Do-it-yourself maintenance sales helping stabilize base.",
+    "likes": 83,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_037",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T17:45:00Z",
+    "ticker": "ABBV",
+    "text": "$ABBV Patent settlement clears up market overhang. Skyrizi and Rinvoq trajectory easily filling the post-Humira revenue gap.",
+    "likes": 156,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_038",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T18:20:00Z",
+    "ticker": "MRK",
+    "text": "Merck's $4B oncology acquisition gives them a fortress antibody-drug conjugate pipeline ahead of Keytruda LOE. Excellent strategic hedge $MRK.",
+    "likes": 210,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_039",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-29T18:55:00Z",
+    "ticker": "LLY",
+    "text": "Automated peptide plant opening is huge for $LLY supply. Unmet global metabolic drug demand is massive; supply was the only bottleneck.",
+    "likes": 380,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_040",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-29T19:30:00Z",
+    "ticker": "TGT",
+    "text": "$TGT RFID tracking and store security upgrades starting to pay off. Shrink metrics stabilizing in urban retail formats.",
+    "likes": 94,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_041",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T08:15:00Z",
+    "ticker": "AAPL",
+    "text": "$AAPL Record trade-ins on the new iPhone 18 Pro cycle. Chinese market recovery is showing up in supply chain sensor orders.",
+    "likes": 210,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_042",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T08:50:00Z",
+    "ticker": "MSFT",
+    "text": "Microsoft security updates patching zero-day vulnerabilities quickly. Enterprise trust remains second to none in sovereign cloud $MSFT.",
+    "likes": 135,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_043",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T09:25:00Z",
+    "ticker": "NVDA",
+    "text": "$NVDA CoWoS packaging packaging capacity constraints easing at TSMC. Gross margins staying well above 74%.",
+    "likes": 275,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_044",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T10:00:00Z",
+    "ticker": "TSLA",
+    "text": "$TSLA Next-gen sub-$25k vehicle unboxed manufacturing line ramping up in Texas. Volume inflection coming in 2027.",
+    "likes": 390,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_045",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T10:35:00Z",
+    "ticker": "AMZN",
+    "text": "Prime Day delivery metrics set all-time records with sub-same-day delivery speeds in top 60 metros $AMZN.",
+    "likes": 180,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_046",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T11:10:00Z",
+    "ticker": "JPM",
+    "text": "$JPM Jamie Dimon on investor call: credit card charge-offs remain below historical 2019 averages. Consumer balance sheets still solid.",
+    "likes": 165,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_047",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T11:45:00Z",
+    "ticker": "META",
+    "text": "$META WhatsApp monetization in India and Brazil crossing significant milestone. Click-to-message ads driving high ROI for small businesses.",
+    "likes": 220,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_048",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T12:20:00Z",
+    "ticker": "GOOGL",
+    "text": "YouTube Shorts monetization parity achieved with standard long form video. Ad revenues re-accelerating $GOOGL.",
+    "likes": 195,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_049",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T12:55:00Z",
+    "ticker": "XOM",
+    "text": "$XOM Guyana offshore production exceeding 650k barrels per day at sub-$30 cash cost. Incredible capital efficiency.",
+    "likes": 140,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_050",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T13:30:00Z",
+    "ticker": "CVX",
+    "text": "$CVX Tengizchevroil expansion reaching commercial completion. Production volumes starting to flow to Caspian pipeline.",
+    "likes": 110,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_051",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T14:05:00Z",
+    "ticker": "WMT",
+    "text": "Walmart advertising business Walmart Connect growing at 28% YoY with high 60%+ margins. Major incremental profit driver $WMT.",
+    "likes": 160,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_052",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T14:40:00Z",
+    "ticker": "BA",
+    "text": "$BA Cash flow turnaround delayed but commercial backlog sits at 5,400 aircraft. Long term duopoly with Airbus is safe.",
+    "likes": 85,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_053",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T15:15:00Z",
+    "ticker": "UNH",
+    "text": "$UNH Optum health services division expanding value-based care contracts with employers. Non-cyclical defensive powerhouse.",
+    "likes": 105,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_054",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T15:50:00Z",
+    "ticker": "CAT",
+    "text": "Resource industries segment showing strength as mining capex cycle kicks off globally. Cyclical resilience proving strong $CAT.",
+    "likes": 115,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_055",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T16:25:00Z",
+    "ticker": "PFE",
+    "text": "$PFE Cost realignment program delivering $4B in structural savings. R&D capital efficiently concentrated on high probability clinical assets.",
+    "likes": 130,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_056",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T17:00:00Z",
+    "ticker": "DIS",
+    "text": "$DIS Parks and experiences segment continues delivering steady operating income margins despite slightly higher labor costs.",
+    "likes": 140,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_057",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T17:35:00Z",
+    "ticker": "V",
+    "text": "Value-added services like fraud prevention and tokenization growing at 20%+ at $V, diversifying away from pure interchange fees.",
+    "likes": 170,
+    "user_reputation": "verified"
+  },
+  {
+    "id": "soc_058",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T18:10:00Z",
+    "ticker": "PG",
+    "text": "$PG Productivity savings funding marketing reinvestment. Market share gains across 8 out of 10 core product categories.",
+    "likes": 95,
+    "user_reputation": "medium"
+  },
+  {
+    "id": "soc_059",
+    "platform": "StockTwits",
+    "timestamp": "2026-09-30T18:45:00Z",
+    "ticker": "LLY",
+    "text": "$LLY Pipeline breadth in oral small molecule GLP-1 and neurodegeneration candidates cements 5-year growth trajectory.",
+    "likes": 290,
+    "user_reputation": "high"
+  },
+  {
+    "id": "soc_060",
+    "platform": "X (Twitter)",
+    "timestamp": "2026-09-30T19:20:00Z",
+    "ticker": "HD",
+    "text": "Pro-customer segment loyalty driving higher ticket averages for $HD, buffering the temporary pause in consumer DIY projects.",
+    "likes": 125,
+    "user_reputation": "high"
+  }
+]
