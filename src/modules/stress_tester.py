@@ -71,6 +71,7 @@ class StressTestResult:
     var_99_baseline_usd: float
     var_99_stressed_usd: float
     asset_breakdown: List[Dict[str, Any]]
+    stressed_positions_df: Optional[pd.DataFrame] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -207,5 +208,6 @@ class StressTester:
             el_increase_usd=el_increase,
             var_99_baseline_usd=var_base,
             var_99_stressed_usd=var_stressed,
-            asset_breakdown=breakdown
+            asset_breakdown=breakdown,
+            stressed_positions_df=df
         )
