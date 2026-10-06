@@ -5,9 +5,11 @@ Supports querying signals, filtering by ticker, and real-time ad-hoc text risk s
 
 from typing import Any, Dict, List, Optional
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from src.engine import IngestionPipeline, RiskEngine, RiskSignal
+from src.modules import TacticalIndexRebalancer, StressTester
 
 app = FastAPI(
     title="RiskPulse AI - Financial Risk Signal Bus",
@@ -15,9 +17,20 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Global engine instance and in-memory signal cache
+# Enable CORS for React development server
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Global engine instances and in-memory caches
 engine = RiskEngine()
 pipeline = IngestionPipeline()
+rebalancer = TacticalIndexRebalancer()
+stress_tester = StressTester()
 cached_signals: List[RiskSignal] = []
 
 
@@ -90,3 +103,52 @@ def analyze_text(request: AnalyzeRequest) -> Dict[str, Any]:
     }
     signal = engine.process_item(item)
     return signal.to_dict()
+
+
+class RebalanceRequest(BaseModel):
+    sensitivity_alpha: Optional[float] = 0.35
+
+
+@app.get("/api/rebalance/state", tags=["Module A: Rebalancer"])
+def get_rebalance_state() -> List[Dict[str, Any]]:
+    """Retrieve current S&P 100 constituent weights, sectors, and drift."""
+    df = rebalancer.get_current_state()
+    return df.to_dict(orient="records")
+
+
+@app.post("/api/rebalance/run", tags=["Module A: Rebalancer"])
+def run_rebalance(request: RebalanceRequest) -> Dict[str, Any]:
+    """Execute batch rebalancing across active signal stream."""
+    rebalancer.sensitivity_alpha = request.sensitivity_alpha or 0.35
+    events = rebalancer.rebalance_batch(cached_signals)
+    state = rebalancer.get_current_state()
+    return {
+        "events_count": len(events),
+        "recent_events": [e.to_dict() for e in events[-10:]],
+        "state": state.to_dict(orient="records")
+    }
+
+
+class StressTestRequest(BaseModel):
+    event_type: str
+    impact_score: int
+    target_sector: Optional[str] = None
+
+
+@app.post("/api/stress-test/run", tags=["Module B: Stress Tester"])
+def run_stress_test(request: StressTestRequest) -> Dict[str, Any]:
+    """Execute multi-factor wholesale portfolio stress simulation."""
+    target_sec = None if not request.target_sector or request.target_sector.lower() == "none" else request.target_sector
+    result = stress_tester.run_stress_test(
+        event_type=request.event_type,
+        impact_score=request.impact_score,
+        target_sector=target_sec
+    )
+    res_dict = result.to_dict()
+    if result.stressed_positions_df is not None:
+        res_dict["positions"] = result.stressed_positions_df[[
+            "position_id", "asset_type", "counterparty", "sector", "notional_usd",
+            "credit_rating", "tenor_years", "current_mv_usd", "stressed_mv_usd", "pnl_usd", "pnl_pct"
+        ]].to_dict(orient="records")
+    return res_dict
+
