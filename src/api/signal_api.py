@@ -152,3 +152,13 @@ def run_stress_test(request: StressTestRequest) -> Dict[str, Any]:
         ]].to_dict(orient="records")
     return res_dict
 
+
+# Mount React Production Frontend (if built)
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
+
+frontend_dist = Path("frontend/dist")
+if frontend_dist.exists():
+    app.mount("/", StaticFiles(directory=str(frontend_dist), html=True), name="frontend")
+
+

@@ -78,16 +78,18 @@ pip install -r requirements.txt
 # 4. Run automated test suite (100% passing)
 python -m pytest -v
 
-# 5. Launch the Interactive RiskPulse AI Command Center
+# 5. Launch the Application (Choose your preferred UI):
+
+# Option A: Institutional React Web App (FastAPI + React UI at http://localhost:8000)
+python -m uvicorn src.api.signal_api:app --reload --port 8000
+
+# Option B: Streamlit Command Center (http://localhost:8501)
 python -m streamlit run app.py
 ```
 
-*Optional REST API execution:*
-```bash
-# Launch the FastAPI Signal Bus
-uvicorn src.api.signal_api:app --reload --port 8000
-# Access interactive Swagger docs at http://localhost:8000/docs
-```
+*Interactive API Documentation:*
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
 ---
 
