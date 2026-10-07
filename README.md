@@ -1,7 +1,8 @@
 # [RiskPulse AI] - S&P Global & Crisil Campus Hackathon
 
 **Candidate Name:** Arpit Gupta  
-**College Email ID:** arpit.gupta2023@vitbhopal.ac.in  
+**College Email ID:** arpit.23bce10791@vitbhopal.ac.in  
+**Personal Email ID:** 2004arpitgupta@gmail.com  
 **College / Campus:** Vellore Institute of Technology, Bhopal  
 **Demo Video Link:** [YouTube / Unlisted](https://youtu.be/placeholder)  
 **Slide Deck Link (if hosted externally):** [docs/presentation.pdf](docs/presentation.pdf)  
@@ -78,7 +79,7 @@ pip install -r requirements.txt
 python -m pytest -v
 
 # 5. Launch the Interactive RiskPulse AI Command Center
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 *Optional REST API execution:*
