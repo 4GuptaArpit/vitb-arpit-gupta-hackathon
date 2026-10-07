@@ -153,6 +153,13 @@ def run_stress_test(request: StressTestRequest) -> Dict[str, Any]:
     return res_dict
 
 
+@app.get("/api/stress-test/scenarios", tags=["Module B: Stress Tester"])
+def get_stress_scenarios() -> Dict[str, Any]:
+    """Retrieve pre-calibrated historical crisis scenario playbook."""
+    from src.modules import HISTORICAL_SCENARIOS
+    return HISTORICAL_SCENARIOS
+
+
 # Mount React Production Frontend (if built)
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles

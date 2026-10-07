@@ -56,6 +56,34 @@ SHOCK_MATRIX: Dict[str, Dict[str, float]] = {
     }
 }
 
+# Landmark Historical Crisis Scenarios Playbook
+HISTORICAL_SCENARIOS: Dict[str, Dict[str, Any]] = {
+    "2008 Lehman Liquidity Crunch": {
+        "event_type": "Credit Event",
+        "impact_score": 10,
+        "target_sector": "Financial Services",
+        "narrative": "Global liquidity freeze, subprime debt write-downs, systemic counterparty contagion."
+    },
+    "2020 COVID Market Dislocation": {
+        "event_type": "Macroeconomic",
+        "impact_score": 9,
+        "target_sector": "None",
+        "narrative": "Simultaneous supply/demand shock, emergency interest rate cuts, corporate cash drawdowns."
+    },
+    "2022 Geopolitical Energy & Shipping Crisis": {
+        "event_type": "Geopolitical",
+        "impact_score": 8,
+        "target_sector": "Energy",
+        "narrative": "Strait shipping rerouting, crude oil spike, maritime insurance surge and sanctions."
+    },
+    "2024 Tech Regulatory & Antitrust Sweep": {
+        "event_type": "Regulatory",
+        "impact_score": 7,
+        "target_sector": "Semiconductors",
+        "narrative": "EU Digital Markets Act enforcement, strict in-app fee crackdowns, cross-border export limits."
+    }
+}
+
 
 @dataclass
 class StressTestResult:
