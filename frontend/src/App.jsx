@@ -70,7 +70,7 @@ export default function App() {
 
         {/* Tab Content Panels */}
         <div className="pt-2">
-          {activeTab === 'feed' && <SignalFeedTab signals={signals} />}
+          {activeTab === 'feed' && <SignalFeedTab signals={signals} onNavigateTab={setActiveTab} />}
           {activeTab === 'rebalance' && <RebalanceTab />}
           {activeTab === 'stress' && <StressTestTab />}
           {activeTab === 'adhoc' && <AdhocTab />}

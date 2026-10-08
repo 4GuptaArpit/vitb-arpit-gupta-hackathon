@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Filter, Search, Tag, ExternalLink } from 'lucide-react'
+import { Filter, Search, Tag, ExternalLink, ChevronRight } from 'lucide-react'
+import SignalDetailModal from './SignalDetailModal'
 
-export default function SignalFeedTab({ signals }) {
+export default function SignalFeedTab({ signals, onNavigateTab }) {
   const [selectedEvent, setSelectedEvent] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
   const [minImpact, setMinImpact] = useState(1)
+  const [selectedSignal, setSelectedSignal] = useState(null)
 
   const events = ['All', 'Geopolitical', 'Credit Event', 'Macroeconomic', 'Regulatory', 'Merger/Acquisition', 'Product Launch']
 
@@ -64,11 +66,12 @@ export default function SignalFeedTab({ signals }) {
         {filtered.map((sig) => (
           <div
             key={sig.id}
-            className="p-3.5 bg-[#0f172a]/60 hover:bg-[#131c33] border border-slate-800 hover:border-slate-700 rounded-xl transition duration-150"
+            onClick={() => setSelectedSignal(sig)}
+            className="group p-3.5 bg-[#0f172a]/60 hover:bg-[#131d38] border border-slate-800 hover:border-sky-500/50 rounded-xl transition duration-150 cursor-pointer relative shadow-sm hover:shadow-md hover:shadow-sky-950/30"
           >
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center space-x-2.5">
-                <span className="font-mono text-sm font-bold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-sky-400">
+                <span className="font-mono text-sm font-bold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-sky-400 group-hover:border-sky-500/40">
                   {sig.ticker}
                 </span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800/80 text-slate-300 font-medium">
@@ -94,23 +97,38 @@ export default function SignalFeedTab({ signals }) {
                 }`}>
                   Impact {sig.impact_score}/10
                 </span>
+                <ChevronRight className="w-4 h-4 text-slate-600 group-hover:text-sky-400 group-hover:translate-x-0.5 transition" />
               </div>
             </div>
 
-            <p className="text-xs text-slate-200 font-medium mt-2 leading-relaxed">
+            <p className="text-xs text-slate-200 font-medium mt-2 leading-relaxed group-hover:text-white transition">
               {sig.headline}
             </p>
 
-            {sig.key_drivers && sig.key_drivers.length > 0 && (
-              <div className="flex items-center space-x-1.5 mt-2.5 text-[11px] text-slate-400">
-                <Tag className="w-3 h-3 text-sky-400" />
-                <span className="text-slate-500">Key NLP Drivers:</span>
-                <span className="text-slate-300 font-mono">{sig.key_drivers.join(', ')}</span>
-              </div>
-            )}
+            <div className="flex items-center justify-between mt-2.5 text-[11px] text-slate-400">
+              {sig.key_drivers && sig.key_drivers.length > 0 ? (
+                <div className="flex items-center space-x-1.5">
+                  <Tag className="w-3 h-3 text-sky-400" />
+                  <span className="text-slate-500">Key NLP Drivers:</span>
+                  <span className="text-slate-300 font-mono">{sig.key_drivers.join(', ')}</span>
+                </div>
+              ) : <div />}
+              <span className="text-[10px] text-sky-400/80 opacity-0 group-hover:opacity-100 transition flex items-center space-x-1 font-medium">
+                <span>Inspect impact dossier & XAI</span>
+                <ExternalLink className="w-2.5 h-2.5" />
+              </span>
+            </div>
           </div>
         ))}
       </div>
+
+      {/* Deep-Dive Transmission & Explainability Modal */}
+      <SignalDetailModal
+        signal={selectedSignal}
+        onClose={() => setSelectedSignal(null)}
+        onNavigateTab={onNavigateTab}
+      />
     </div>
   )
 }
+
