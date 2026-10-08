@@ -17,6 +17,34 @@ export default function App() {
   const [isConnected, setIsConnected] = useState(false)
   const [loading, setLoading] = useState(false)
   const [isGuideOpen, setIsGuideOpen] = useState(false)
+  const [isCommandBarOpen, setIsCommandBarOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsCommandBarOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleExecuteMnemonic = (mnemonic) => {
+    if (mnemonic === 'QUADRANT') {
+      setViewMode(prev => prev === 'quadrant' ? 'tabs' : 'quadrant');
+    } else if (mnemonic === 'ATTRIB' || mnemonic === 'REBALANCE') {
+      setActiveTab('rebalance');
+      setViewMode('tabs');
+    } else if (mnemonic === 'GOVERNOR' || mnemonic === 'STRESS') {
+      setActiveTab('stress');
+      setViewMode('tabs');
+    } else if (mnemonic === 'RESET') {
+      setActiveTab('rebalance');
+      setViewMode('tabs');
+    }
+  };
+
 
   useEffect(() => {
     checkHealthAndLoad()
@@ -215,6 +243,11 @@ export default function App() {
         isOpen={isGuideOpen} 
         onClose={() => setIsGuideOpen(false)} 
         activeTab={activeTab === 'feed' ? 'signals' : activeTab} 
+      />
+      <CommandBar 
+        isOpen={isCommandBarOpen} 
+        onClose={() => setIsCommandBarOpen(false)} 
+        onExecuteMnemonic={handleExecuteMnemonic} 
       />
 
       </main>

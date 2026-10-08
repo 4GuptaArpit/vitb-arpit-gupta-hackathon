@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Flame, DollarSign, TrendingDown, AlertOctagon } from 'lucide-react'
+import { Flame, DollarSign, TrendingDown, AlertOctagon, FileDown } from 'lucide-react'
 import { runStressTest } from '../api'
 
 export default function StressTestTab() {
@@ -8,6 +8,31 @@ export default function StressTestTab() {
   const [targetSector, setTargetSector] = useState('None')
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [exportingPdf, setExportingPdf] = useState(false)
+
+  async function handleExportStressPdf() {
+    try {
+      setExportingPdf(true)
+      const res = await fetch(`/api/reports/stress-test/export?event_type=${encodeURIComponent(eventType)}&impact_score=${impactScore}&shock_multiplier=1.0`, {
+        method: 'POST'
+      })
+      if (!res.ok) throw new Error('Failed to generate Stress PDF')
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `CRISIL_Stress_Report_${eventType.replace(/\s+/g, '_')}_Sev${impactScore}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (e) {
+      console.error(e)
+      alert('Could not export Stress Report PDF.')
+    } finally {
+      setExportingPdf(false)
+    }
+  }
 
   const events = ['Geopolitical', 'Credit Event', 'Macroeconomic', 'Regulatory', 'Merger/Acquisition', 'Product Launch']
   const sectors = ['None', 'Energy', 'Financial Services', 'Semiconductors', 'Telecommunications', 'Automotive', 'Healthcare']
@@ -79,13 +104,25 @@ export default function StressTestTab() {
           </div>
         </div>
 
-        <button
-          onClick={executeSimulation}
-          disabled={loading}
-          className="px-5 py-2 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/30 text-rose-300 text-xs font-semibold transition"
-        >
-          {loading ? 'Simulating Shocks...' : 'Execute Stress Simulation'}
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={executeSimulation}
+            disabled={loading}
+            className="px-5 py-2 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/30 text-rose-300 text-xs font-semibold transition"
+          >
+            {loading ? 'Simulating Shocks...' : 'Execute Stress Simulation'}
+          </button>
+
+          <button
+            onClick={handleExportStressPdf}
+            disabled={exportingPdf}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cyan-950/60 hover:bg-cyan-900/60 border border-cyan-500/40 text-cyan-300 text-xs font-semibold font-mono transition"
+            title="Download Institutional C-Suite Stress Memorandum (PDF)"
+          >
+            <FileDown className={`w-3.5 h-3.5 ${exportingPdf ? 'animate-bounce' : ''}`} />
+            <span>{exportingPdf ? 'Compiling PDF...' : 'Export Stress Report PDF'}</span>
+          </button>
+        </div>
       </div>
 
       {/* KPI Ribbon */}

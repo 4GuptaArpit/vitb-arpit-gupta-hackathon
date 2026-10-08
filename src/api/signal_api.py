@@ -186,11 +186,11 @@ def export_stress_report(
     from fastapi.responses import FileResponse
     from src.modules import generate_stress_report
 
-    stress_tester = get_stress_tester()
-    res = stress_tester.run_stress_test(
+    from src.modules import StressTester
+    tester = StressTester()
+    res = tester.run_stress_test(
         event_type=event_type,
-        impact_score=impact_score,
-        shock_multiplier=shock_multiplier
+        impact_score=impact_score
     )
     temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
     temp_pdf.close()
