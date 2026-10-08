@@ -17,6 +17,12 @@ export default function Navbar({ isConnected, onRefresh, loading }) {
               <span className="text-xs px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300 font-mono">
                 v1.0.0
               </span>
+              <span className="hidden md:inline-flex text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-sky-950/60 border border-sky-800/60 text-sky-400 font-mono">
+                BASEL-III / CCAR
+              </span>
+              <span className="hidden lg:inline-flex text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 font-mono">
+                S&P 100 ZERO-LEAKAGE
+              </span>
             </div>
             <p className="text-xs text-slate-400">
               S&P Global × CRISIL Campus Hackathon 2026 • Candidate: <span className="text-slate-200 font-medium">Arpit Gupta (VIT Bhopal)</span>

@@ -12,6 +12,9 @@ body {
   background-color: #080c14;
   color: #f1f5f9;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Custom Scrollbar for Bloomberg Terminal Look */
@@ -30,7 +33,10 @@ body {
   background: #475569;
 }
 
-.font-mono-numbers {
-  font-family: 'JetBrains Mono', monospace;
-  font-feature-settings: 'tnum' on, 'zero' on;
+/* Institutional Tabular Numeral Enforcement (ui-typography) */
+code, pre, .font-mono, .font-mono-numbers {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+  font-variant-numeric: tabular-nums slashed-zero;
 }
+

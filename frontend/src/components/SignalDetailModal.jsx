@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { X, TrendingDown, TrendingUp, AlertTriangle, ShieldAlert, Cpu, ArrowRight, Activity, FileText, Download } from 'lucide-react'
+import { X, TrendingDown, TrendingUp, AlertTriangle, ShieldAlert, Cpu, ArrowRight, Activity, FileText, Download, Network } from 'lucide-react'
+
 
 // Realistic institutional transmission channel mappings
 const TRANSMISSION_PROFILES = {
@@ -324,6 +325,53 @@ export default function SignalDetailModal({ signal, onClose, onNavigateTab }) {
                 <p className="text-xs text-slate-400 leading-relaxed">
                   {profile.creditSpread}
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section: Cross-Asset Contagion & Peer Spillover Radar */}
+          <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2.5">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <span className="flex items-center space-x-1.5">
+                <Network className="w-3.5 h-3.5 text-sky-400" />
+                <span>Cross-Asset Contagion & Peer Spillover Radar</span>
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">2nd-Order Beta Propagation</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-1 font-mono text-xs">
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-sky-500/30">
+                <div className="text-[10px] text-sky-400 uppercase font-sans font-semibold">Shock Epicenter</div>
+                <div className="text-sm font-bold text-white mt-0.5">{signal.ticker}</div>
+                <div className={`text-[11px] ${isPositive ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  Direct: {whatIfSentiment >= 0 ? `+${whatIfSentiment.toFixed(2)}` : whatIfSentiment.toFixed(2)}
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                <div className="text-[10px] text-slate-400 uppercase font-sans font-semibold">Sector Peer Drag</div>
+                <div className="text-sm font-bold text-slate-200 mt-0.5">
+                  {signal.ticker === 'NVDA' ? 'AMD / INTC' : signal.ticker === 'AAPL' ? 'MSFT / GOOGL' : 'SECTOR PEERS'}
+                </div>
+                <div className="text-[11px] text-amber-400">
+                  Drag: {(whatIfSentiment * 0.45).toFixed(2)}
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                <div className="text-[10px] text-slate-400 uppercase font-sans font-semibold">Defensive Inflows</div>
+                <div className="text-sm font-bold text-slate-200 mt-0.5">XOM / PG / JNJ</div>
+                <div className="text-[11px] text-emerald-400">
+                  Flight-to-Quality
+                </div>
+              </div>
+
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+                <div className="text-[10px] text-slate-400 uppercase font-sans font-semibold">Wholesale CDS Basis</div>
+                <div className="text-sm font-bold text-slate-200 mt-0.5">+{spreadBps} bps</div>
+                <div className="text-[11px] text-purple-400">
+                  {pdMultiplier}x PD Shock
+                </div>
               </div>
             </div>
           </div>
