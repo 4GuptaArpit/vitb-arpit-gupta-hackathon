@@ -4,6 +4,7 @@ RiskPulse AI - Downstream Applications Package (Modules A & B)
 
 from .rebalancer import INDEX_BASKET, RebalanceEvent, TacticalIndexRebalancer
 from .stress_tester import HISTORICAL_SCENARIOS, SHOCK_MATRIX, StressTester, StressTestResult
+from .report_generator import generate_stress_report
 
 __all__ = [
     "INDEX_BASKET",
@@ -12,5 +13,6 @@ __all__ = [
     "StressTester",
     "StressTestResult",
     "SHOCK_MATRIX",
-    "HISTORICAL_SCENARIOS"
+    "HISTORICAL_SCENARIOS",
+    "generate_stress_report"
 ]

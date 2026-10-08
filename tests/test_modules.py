@@ -55,3 +55,16 @@ def test_module_b_stress_tester():
     assert res.var_99_stressed_usd > res.var_99_baseline_usd
     assert len(res.asset_breakdown) == 4             # 4 asset classes: Loans, IG Bonds, HY Bonds, CDS
     assert res.stressed_positions_df is not None
+
+
+def test_pdf_report_generator(tmp_path):
+    from src.modules import StressTester, generate_stress_report
+    from pathlib import Path
+
+    stress_tester = StressTester()
+    res = stress_tester.run_stress_test(event_type="macro_recession", impact_score=8.5)
+    pdf_out = str(tmp_path / "test_report.pdf")
+    generated_path = generate_stress_report(res, pdf_out)
+
+    assert Path(generated_path).exists()
+    assert Path(generated_path).stat().st_size > 1000  # valid PDF generated

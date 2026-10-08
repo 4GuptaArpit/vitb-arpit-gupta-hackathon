@@ -160,6 +160,34 @@ def get_stress_scenarios() -> Dict[str, Any]:
     return HISTORICAL_SCENARIOS
 
 
+@app.post("/api/reports/stress-test/export", tags=["Executive Reports"])
+def export_stress_report(
+    event_type: str = Query("regulatory_investigation"),
+    impact_score: float = Query(7.5, ge=1.0, le=10.0),
+    shock_multiplier: float = Query(1.0, ge=0.1, le=5.0)
+):
+    """Generate and download institutional CRISIL-grade PDF risk memorandum."""
+    import tempfile
+    from fastapi.responses import FileResponse
+    from src.modules import generate_stress_report
+
+    stress_tester = get_stress_tester()
+    res = stress_tester.run_stress_test(
+        event_type=event_type,
+        impact_score=impact_score,
+        shock_multiplier=shock_multiplier
+    )
+    temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+    temp_pdf.close()
+    pdf_path = generate_stress_report(res, temp_pdf.name)
+    clean_ev = event_type.replace(' ', '_').lower()
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename=f"RiskPulse_Stress_Report_{clean_ev}.pdf"
+    )
+
+
 # Mount React Production Frontend (if built)
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
