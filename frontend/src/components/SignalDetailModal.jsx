@@ -48,6 +48,16 @@ const TRANSMISSION_PROFILES = {
 }
 
 export default function SignalDetailModal({ signal, onClose, onNavigateTab }) {
+  const [whatIfImpact, setWhatIfImpact] = React.useState(signal?.impact_score || 5)
+  const [whatIfSentiment, setWhatIfSentiment] = React.useState(signal?.sentiment_score || 0.0)
+
+  React.useEffect(() => {
+    if (signal) {
+      setWhatIfImpact(signal.impact_score)
+      setWhatIfSentiment(signal.sentiment_score)
+    }
+  }, [signal])
+
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key === 'Escape') onClose()
@@ -66,11 +76,15 @@ export default function SignalDetailModal({ signal, onClose, onNavigateTab }) {
     channelColor: 'text-sky-400'
   }
 
-  const isPositive = signal.sentiment_score >= 0.0
+  const isPositive = whatIfSentiment >= 0.0
   const ChannelIcon = profile.channelIcon
 
-  // Calculate estimated rebalance delta
-  const estimatedDelta = (signal.sentiment_score * (signal.impact_score / 10.0) * 1.2).toFixed(2)
+  // Dynamic counterfactual calculations
+  const estimatedDelta = (whatIfSentiment * (whatIfImpact / 10.0) * 1.2).toFixed(2)
+  const spreadBps = Math.round(Math.abs(whatIfSentiment) * whatIfImpact * 8.5)
+  const pdMultiplier = (1.0 + (Math.max(0, -whatIfSentiment) * (whatIfImpact / 10.0) * 1.5)).toFixed(2)
+  const isModified = whatIfImpact !== signal.impact_score || Math.abs(whatIfSentiment - signal.sentiment_score) > 0.01
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
@@ -133,12 +147,111 @@ export default function SignalDetailModal({ signal, onClose, onNavigateTab }) {
             </div>
           </div>
 
+          {/* Interactive What-If Counterfactual Simulator */}
+          <div className="p-4 bg-gradient-to-r from-slate-900/90 via-[#0d1729] to-slate-900/90 border border-sky-500/30 rounded-xl space-y-3 shadow-inner">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
+                <span className="text-xs font-bold text-sky-300 uppercase tracking-wider">
+                  Interactive "What-If" Counterfactual Simulator
+                </span>
+                {isModified && (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold">
+                    Simulating Scenario
+                  </span>
+                )}
+              </div>
+              {isModified && (
+                <button
+                  onClick={() => {
+                    setWhatIfImpact(signal.impact_score)
+                    setWhatIfSentiment(signal.sentiment_score)
+                  }}
+                  className="text-[11px] text-slate-400 hover:text-sky-300 underline underline-offset-2 transition"
+                >
+                  Reset to Baseline
+                </button>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+              {/* Severity Slider */}
+              <div className="space-y-1.5 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">Simulated Severity:</span>
+                  <span className="font-mono font-bold text-amber-400">{whatIfImpact}/10</span>
+                </div>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  step="1"
+                  value={whatIfImpact}
+                  onChange={(e) => setWhatIfImpact(Number(e.target.value))}
+                  className="w-full accent-amber-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+                />
+                <div className="flex justify-between text-[10px] text-slate-500 font-mono">
+                  <span>1 (Mild)</span>
+                  <span>5 (Moderate)</span>
+                  <span>10 (Catastrophic)</span>
+                </div>
+              </div>
+
+              {/* Sentiment Polarity Slider */}
+              <div className="space-y-1.5 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-slate-400">Simulated Sentiment:</span>
+                  <span className={`font-mono font-bold ${whatIfSentiment >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    {whatIfSentiment >= 0 ? `+${whatIfSentiment.toFixed(2)}` : whatIfSentiment.toFixed(2)}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min="-1.0"
+                  max="1.0"
+                  step="0.05"
+                  value={whatIfSentiment}
+                  onChange={(e) => setWhatIfSentiment(Number(e.target.value))}
+                  className={`w-full cursor-pointer h-1.5 bg-slate-800 rounded-lg ${whatIfSentiment >= 0 ? 'accent-emerald-400' : 'accent-rose-400'}`}
+                />
+                <div className="flex justify-between text-[10px] text-slate-500 font-mono">
+                  <span>-1.0 (Distressed)</span>
+                  <span>0.0 (Neutral)</span>
+                  <span>+1.0 (Euphoric)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Recalculated Impact Badges */}
+            <div className="grid grid-cols-3 gap-2 pt-1 text-center font-mono">
+              <div className="bg-slate-950/80 p-2 rounded-lg border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">Simulated Δ Weight</div>
+                <div className={`text-xs font-bold ${isPositive ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  {isPositive ? `+${estimatedDelta}%` : `${estimatedDelta}%`}
+                </div>
+              </div>
+              <div className="bg-slate-950/80 p-2 rounded-lg border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">Spread Widening</div>
+                <div className="text-xs font-bold text-amber-400">
+                  +{spreadBps} bps
+                </div>
+              </div>
+              <div className="bg-slate-950/80 p-2 rounded-lg border border-slate-800">
+                <div className="text-[10px] text-slate-500 uppercase">PD Multiplier</div>
+                <div className="text-xs font-bold text-purple-400">
+                  {pdMultiplier}x
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Section: Why & How It Impacts (Transmission Channels) */}
           <div className="space-y-3">
             <div className="flex items-center space-x-2 text-xs font-bold text-slate-300 uppercase tracking-wider">
               <ChannelIcon className={`w-4 h-4 ${profile.channelColor}`} />
               <span>Risk Transmission Mechanism (Why & How It Impacts)</span>
             </div>
+
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {/* Channel 1: Operational */}
