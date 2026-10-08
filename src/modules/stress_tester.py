@@ -239,3 +239,88 @@ class StressTester:
             asset_breakdown=breakdown,
             stressed_positions_df=df
         )
+
+    def compute_basel3_capital_governor(self, jurisdiction: str = "RBI", stressed_cet1_ratio: float = None) -> dict:
+        """
+        Dual-Jurisdiction Basel III / RBI Capital Conservation Buffer (CCB) & MDA Governor.
+        Supports:
+        - RBI (India): Min CET1 5.50% + CCB 2.50% = 8.00% + D-SIB surcharge (HDFC 0.40%, ICICI 0.40%, SBI 0.80%)
+        - BCBS (Global): Min CET1 4.50% + CCB 2.50% = 7.00%
+        - US Fed (CCAR): Min CET1 4.50% + Stress Capital Buffer (SCB min 2.50%)
+        Returns Maximum Distributable Amount (MDA) statutory dividend payout restriction bracket.
+        """
+        jurisdiction = jurisdiction.upper()
+        if stressed_cet1_ratio is None:
+            stressed_cet1_ratio = 8.45  # Default stressed CET1 %
+
+        if jurisdiction == "RBI":
+            min_cet1 = 5.50
+            ccb_req = 2.50
+            dsib_surcharge = 0.40  # Tier 1 D-SIB (HDFC/ICICI)
+            total_target = min_cet1 + ccb_req + dsib_surcharge
+            regulator = "Reserve Bank of India (RBI Master Direction - Basel III)"
+        elif jurisdiction == "US_FED":
+            min_cet1 = 4.50
+            ccb_req = 2.50  # SCB floor
+            dsib_surcharge = 1.00  # G-SIB surcharge
+            total_target = min_cet1 + ccb_req + dsib_surcharge
+            regulator = "Federal Reserve Board (CCAR / Dodd-Frank DFAST)"
+        else:  # BCBS Global
+            min_cet1 = 4.50
+            ccb_req = 2.50
+            dsib_surcharge = 0.00
+            total_target = min_cet1 + ccb_req
+            regulator = "Basel Committee on Banking Supervision (BCBS Basel III / FRTB)"
+
+        # Quartile bands for Capital Conservation Buffer
+        q_width = ccb_req / 4.0
+        q1 = min_cet1 + q_width
+        q2 = min_cet1 + (2.0 * q_width)
+        q3 = min_cet1 + (3.0 * q_width)
+        q4 = min_cet1 + ccb_req
+
+        if stressed_cet1_ratio < min_cet1:
+            payout_cap_pct = 0.0
+            bracket_desc = "SEVERE BREACH: CET1 below Minimum Regulatory Requirement. Zero discretionary payouts permitted."
+            status = "CRITICAL_DEFICIT"
+        elif stressed_cet1_ratio < q1:
+            payout_cap_pct = 0.0
+            bracket_desc = "First Quartile Breach: 0% payout permitted (100% earnings retention required)."
+            status = "RESTRICTED"
+        elif stressed_cet1_ratio < q2:
+            payout_cap_pct = 20.0
+            bracket_desc = "Second Quartile: Max 20% payout permitted (80% earnings retention required)."
+            status = "RESTRICTED"
+        elif stressed_cet1_ratio < q3:
+            payout_cap_pct = 40.0
+            bracket_desc = "Third Quartile: Max 40% payout permitted (60% earnings retention required)."
+            status = "CAUTION"
+        elif stressed_cet1_ratio < q4:
+            payout_cap_pct = 60.0
+            bracket_desc = "Fourth Quartile: Max 60% payout permitted (40% earnings retention required)."
+            status = "MONITORING"
+        else:
+            payout_cap_pct = 100.0
+            bracket_desc = "Buffer Fully Intact: 100% discretionary distributions permitted."
+            status = "COMPLIANT"
+
+        return {
+            "jurisdiction": jurisdiction,
+            "regulator": regulator,
+            "stressed_cet1_pct": round(stressed_cet1_ratio, 2),
+            "minimum_cet1_req_pct": min_cet1,
+            "capital_conservation_buffer_pct": ccb_req,
+            "dsib_gsib_surcharge_pct": dsib_surcharge,
+            "total_effective_requirement_pct": total_target,
+            "capital_surplus_deficit_bps": round((stressed_cet1_ratio - total_target) * 100, 1),
+            "mda_dividend_payout_cap_pct": payout_cap_pct,
+            "mda_retained_earnings_requirement_pct": 100.0 - payout_cap_pct,
+            "status": status,
+            "regulatory_action_description": bracket_desc,
+            "ccb_quartiles": {
+                "q1_ceiling": round(q1, 3),
+                "q2_ceiling": round(q2, 3),
+                "q3_ceiling": round(q3, 3),
+                "q4_ceiling": round(q4, 3)
+            }
+        }

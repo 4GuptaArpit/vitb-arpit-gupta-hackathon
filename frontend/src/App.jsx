@@ -1,3 +1,4 @@
+import CommandBar from './components/CommandBar';
 import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import KpiBar from './components/KpiBar'

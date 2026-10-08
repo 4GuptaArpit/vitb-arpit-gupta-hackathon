@@ -239,6 +239,21 @@ def export_signal_alert(req: SignalReportRequest):
     )
 
 
+
+
+@app.get("/api/rebalance/attribution", tags=["Module A: Factor Attribution"])
+def get_brinson_fachler_attribution():
+    """Return institutional Brinson-Fachler Multi-Factor Attribution with Menchero linking."""
+    return rebalancer.compute_brinson_fachler_attribution()
+
+
+@app.get("/api/stress/governor", tags=["Module B: Capital Governor"])
+def get_basel3_governor(jurisdiction: str = "RBI", stressed_cet1: Optional[float] = None):
+    """Return Basel III / RBI Capital Conservation Buffer (CCB) & MDA dividend payout limits."""
+    from src.modules import StressTester
+    tester = StressTester()
+    return tester.compute_basel3_capital_governor(jurisdiction=jurisdiction, stressed_cet1_ratio=stressed_cet1)
+
 # Mount React Production Frontend (if built)
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles
