@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Play, RotateCcw, Shield, ArrowUpRight, ArrowDownRight, Layers } from 'lucide-react'
-import { fetchRebalanceState, runRebalance } from '../api'
+import { fetchRebalanceState, runRebalance, resetRebalance } from '../api'
 
 export default function RebalanceTab() {
   const [basket, setBasket] = useState([])
@@ -18,6 +18,19 @@ export default function RebalanceTab() {
       setBasket(data)
     } catch (e) {
       console.error(e)
+    }
+  }
+
+  async function handleReset() {
+    setLoading(true)
+    try {
+      const data = await resetRebalance()
+      setBasket(data)
+      setEvents([])
+    } catch (e) {
+      console.error(e)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -85,8 +98,9 @@ export default function RebalanceTab() {
             </button>
 
             <button
-              onClick={loadState}
-              className="w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs transition"
+              onClick={handleReset}
+              disabled={loading}
+              className="w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs transition disabled:opacity-50"
             >
               <RotateCcw className="w-3 h-3" />
               <span>Reset to Benchmark</span>

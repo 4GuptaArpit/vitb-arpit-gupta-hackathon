@@ -129,6 +129,14 @@ def run_rebalance(request: RebalanceRequest) -> Dict[str, Any]:
     }
 
 
+@app.post("/api/rebalance/reset", tags=["Module A: Rebalancer"])
+def reset_rebalance() -> List[Dict[str, Any]]:
+    """Reset constituent weights back to baseline S&P 100 benchmark."""
+    df = rebalancer.reset()
+    return df.to_dict(orient="records")
+
+
+
 @app.get("/api/rebalance/backtest", tags=["Module A: Rebalancer"])
 def get_rebalance_backtest(sensitivity_alpha: Optional[float] = Query(0.35, ge=0.05, le=1.0)) -> Dict[str, Any]:
     """Calculate quantitative alpha, Sharpe ratio, and MDD vs static benchmark."""

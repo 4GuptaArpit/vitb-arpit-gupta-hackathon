@@ -206,6 +206,13 @@ def test_api_rebalance_run_and_state(api_client):
     assert "state" in data
     assert len(data["state"]) == 20
 
+    # Reset endpoint test
+    res_reset = api_client.post("/api/rebalance/reset")
+    assert res_reset.status_code == 200
+    reset_data = res_reset.json()
+    assert all(row["weight_drift_pct"] == 0.0 for row in reset_data)
+
+
 
 def test_api_stress_test_full_roundtrip(api_client):
     """Verify full HTTP roundtrip for Module B."""

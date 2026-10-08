@@ -31,6 +31,14 @@ export async function runRebalance(sensitivityAlpha = 0.35) {
   return res.json()
 }
 
+export async function resetRebalance() {
+  const res = await fetch(`${API_BASE}/api/rebalance/reset`, {
+    method: 'POST'
+  })
+  return res.json()
+}
+
+
 export async function runStressTest(eventType, impactScore, targetSector = null) {
   const res = await fetch(`${API_BASE}/api/stress-test/run`, {
     method: 'POST',

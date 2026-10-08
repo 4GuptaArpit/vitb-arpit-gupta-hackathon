@@ -86,6 +86,12 @@ class TacticalIndexRebalancer:
         df["weight_drift_pct"] = (df["current_weight_pct"] - df["base_weight_pct"]).round(2)
         return df
 
+    def reset(self) -> pd.DataFrame:
+        """Reset constituent weights back to baseline S&P 100 benchmark."""
+        self.current_weights = self.base_weights.copy()
+        self.rebalance_history = []
+        return self.get_current_state()
+
     def rebalance_from_signal(self, signal: RiskSignal) -> Optional[RebalanceEvent]:
         """
         Adjust weight of target stock using Sentiment Score (-1.0 to 1.0).

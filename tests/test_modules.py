@@ -43,6 +43,12 @@ def test_module_a_rebalancer_guardrails():
     assert final_state["current_weight"].min() >= 0.010
     assert final_state["current_weight"].max() <= 0.180
 
+    # Test reset to benchmark baseline
+    reset_state = rebalancer.reset()
+    assert (reset_state["current_weight"] == reset_state["base_weight"]).all()
+    assert (reset_state["weight_drift_pct"] == 0.0).all()
+    assert len(rebalancer.rebalance_history) == 0
+
 
 def test_module_b_stress_tester():
     stress_tester = StressTester()
