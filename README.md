@@ -6,6 +6,7 @@
 **College / Campus:** Vellore Institute of Technology, Bhopal  
 **Demo Video Link:** [YouTube / Unlisted](https://youtu.be/placeholder)  
 **Slide Deck Link (if hosted externally):** [docs/presentation.pdf](docs/presentation.pdf)  
+**🏆 Jury Evaluation Quickstart Guide:** [docs/JURY_TEST_GUIDE.md](docs/JURY_TEST_GUIDE.md)  
 
 ---
 
