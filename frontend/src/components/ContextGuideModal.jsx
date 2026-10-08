@@ -3,12 +3,15 @@ import React from 'react';
 export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
   if (!isOpen) return null;
 
+  let key = activeTab;
+  if (key === 'feed') key = 'signals';
+
   const GUIDES = {
     signals: {
       title: "Real-Time NLP Risk Signals & Event Ingestion",
       tagline: "Unstructured Financial News, Social Chatter & Contagion Radar Engine",
       badge: "S&P 100 Zero-Leakage Pipeline",
-      formula: "Severity = \\alpha \\cdot |Sentiment| \\times \\log_{10}(Virality + 10) \\times W_{event}",
+      formula: "Severity = [ alpha * |Sentiment| * log10(Virality + 10) * W_event ]",
       sections: [
         {
           heading: "1. Core Mission & What It Does",
@@ -16,7 +19,7 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
         },
         {
           heading: "2. Contagion & Peer Spillover Radar",
-          content: "When you click any individual news card, the Signal Intelligence Dossier reveals the Cross-Asset Contagion Radar. This models how a severe credit or regulatory shock at an epicenter company (e.g. debt liquidity crunch) spills over into sector peers via correlation matrices, triggers flight-to-quality defensive moves into Treasuries/Gold, and impacts Credit Default Swap (CDS) basis spreads."
+          content: "When you click any individual news card, the Signal Intelligence Dossier reveals the Cross-Asset Contagion Radar. This models how a severe credit or regulatory shock at an epicenter company spills over into sector peers via correlation matrices, triggers flight-to-quality defensive moves into Treasuries/Gold, and impacts Credit Default Swap (CDS) basis spreads."
         },
         {
           heading: "3. How To Use & Test Live",
@@ -28,15 +31,15 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
       title: "Module A: Tactical Index Rebalancer & Alpha Backtester",
       tagline: "Quadratic Constrained Portfolio Optimization & Factor Attribution",
       badge: "Basel III & UCITS 5/10/40 Compliant",
-      formula: "\\min_w \\frac{1}{2} w^T \\Sigma w - \\lambda w^T \\mu \quad \\text{s.t.} \quad \\sum w_i = 1.0, \\quad w_i \\le 15\\%, \\quad \\sum_{i \\in sector} w_i \\le 30\\%",
+      formula: "min_w [ 1/2 w^T * Sigma * w - lambda * w^T * mu ]  s.t.  Sum(w_i) = 1.0,  w_i <= 15%,  Sum(w_sector) <= 30%",
       sections: [
         {
           heading: "1. Core Mission & What It Does",
-          content: "Translates real-time NLP sentiment signals into tactical portfolio weight adjustments. When negative news impacts a constituent, the engine algorithmically reduces risk exposure while respecting strict institutional guardrails (single-stock cap \\le 15%, sector concentration cap \\le 30%, and maximum 500 bps turnover friction penalty)."
+          content: "Translates real-time NLP sentiment signals into tactical portfolio weight adjustments. When negative news impacts a constituent, the engine algorithmically reduces risk exposure while respecting strict institutional guardrails (single-stock cap <= 15%, sector concentration cap <= 30%, and maximum 500 bps turnover friction penalty)."
         },
         {
           heading: "2. Mathematical Zero-Sum Invariant & Waterfall",
-          content: "Guarantees absolute balance sheet conservation: sum of active inflows must identically equal active outflows (\\sum \\Delta w = 0). The real-time waterfall visualizer demonstrates exact zero cash leakage, ensuring no unallocated phantom capital."
+          content: "Guarantees absolute balance sheet conservation: sum of active inflows must identically equal active outflows (Sum of Delta w = 0). The real-time waterfall visualizer demonstrates exact zero cash leakage, ensuring no unallocated phantom capital."
         },
         {
           heading: "3. Brinson-Fachler Factor Attribution (Menchero Linking)",
@@ -52,11 +55,11 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
       title: "Module B: Wholesale Portfolio Stress Tester",
       tagline: "Multi-Asset Capital Adequacy, FRTB Expected Shortfall & Basel III Governor",
       badge: "RBI Master Direction & CCAR Severely Adverse",
-      formula: "Stressed CET1 = \\frac{\\text{CET1}_{\\text{initial}} - \\text{Stressed Loss}}{\\text{RWA}_{\\text{stressed}}}, \\quad ES_{97.5\\%} = \\frac{1}{1-\\alpha} \\int_\\alpha^1 VaR_u(X) du",
+      formula: "Stressed CET1 = (CET1_init - Stressed Loss) / RWA_stressed  |  FRTB ES(97.5%) = (1 / (1 - alpha)) * Integral(VaR_u du)",
       sections: [
         {
           heading: "1. Core Mission & What It Does",
-          content: "Simulates severe macroeconomic and liquidity shocks across a wholesale banking loan and corporate bond portfolio ($250M+ notional). Computes Expected Loss (EL = PD \\times LGD \\times EAD), 99% Parametric VaR, and FRTB 97.5% Expected Shortfall under historical and forward-looking stress scenarios."
+          content: "Simulates severe macroeconomic and liquidity shocks across a wholesale banking loan and corporate bond portfolio ($250M+ notional). Computes Expected Loss (EL = PD * LGD * EAD), 99% Parametric VaR, and FRTB 97.5% Expected Shortfall under historical and forward-looking stress scenarios."
         },
         {
           heading: "2. Dual-Jurisdiction Basel III & RBI Capital Conservation Governor",
@@ -76,7 +79,7 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
       title: "Live Ad-Hoc NLP Signal Analysis Workbench",
       tagline: "Interactive FinBERT Sandbox for Real-Time Financial Text Scoring",
       badge: "Real-Time Scoring Laboratory",
-      formula: "Polarity \\in [-1.0, +1.0], \\quad Impact = f(Sentiment, Virality, EventClass)",
+      formula: "Polarity in [-1.0, +1.0]  |  Impact Severity = f(Sentiment, Virality, EventClass)",
       sections: [
         {
           heading: "1. Core Mission & Why It Exists",
@@ -88,13 +91,13 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
         },
         {
           heading: "3. How To Use",
-          content: "• Paste any breaking headline, regulatory filing snippet, or earnings announcement.\n• Adjust the 'Market Engagement / Virality' slider to simulate social velocity.\n• (Optional) Provide a ticker symbol for event attribution.\n• Click 'Score Risk Signal Live' to inspect the calibrated sentiment, event classification confidence (e.g. Credit Event 95%), impact severity (1-10), and the structured JSON payload."
+          content: "• Paste any breaking headline, regulatory filing snippet, or earnings announcement.\n• Adjust the 'Market Engagement / Virality' slider to simulate social velocity.\n• (Optional) Provide a ticker symbol for event attribution.\n• Click 'Score Risk Signal Live' to inspect the calibrated sentiment, event classification confidence, impact severity (1-10), and the structured JSON payload."
         }
       ]
     }
   };
 
-  const active = GUIDES[activeTab] || GUIDES.signals;
+  const active = GUIDES[key] || GUIDES.signals;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
@@ -130,9 +133,11 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
           </div>
 
           {/* Mathematical / Architectural Specification */}
-          <div className="bg-slate-950/60 p-3.5 rounded-lg border border-slate-800/80 font-mono text-cyan-300 text-[11px]">
-            <span className="text-[10px] text-slate-500 block uppercase mb-1">Governing Formulation:</span>
-            {active.formula}
+          <div className="bg-slate-950/90 p-4 rounded-lg border border-cyan-500/30 font-mono text-cyan-300 text-xs shadow-inner">
+            <span className="text-[10px] text-slate-500 block uppercase mb-1.5 font-bold tracking-wider">Governing Formulation:</span>
+            <div className="font-bold tracking-wide text-slate-100 bg-slate-900/80 px-3 py-2 rounded border border-slate-800">
+              {active.formula}
+            </div>
           </div>
 
           {/* Detailed Content Sections */}
@@ -153,7 +158,7 @@ export default function ContextGuideModal({ isOpen, onClose, activeTab }) {
           <span>S&amp;P Global &times; CRISIL Campus Hackathon 2026 &bull; Round 3 Case Study</span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold transition text-xs"
+            className="px-4 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold transition text-xs shadow"
           >
             Got it, Back to Terminal
           </button>

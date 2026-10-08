@@ -16,6 +16,7 @@ export default function App() {
   const [viewMode, setViewMode] = useState('tabs') // 'tabs' | 'quadrant'
   const [isConnected, setIsConnected] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [isGuideOpen, setIsGuideOpen] = useState(false)
 
   useEffect(() => {
     checkHealthAndLoad()
@@ -101,6 +102,16 @@ export default function App() {
               <span>4-Quadrant Command Desk</span>
             </button>
           </div>
+
+          {/* Contextual (i) Architecture Guide Button */}
+          <button
+            onClick={() => setIsGuideOpen(true)}
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/50 bg-cyan-950/50 text-cyan-300 hover:bg-cyan-900/60 hover:border-cyan-400 text-xs font-mono font-medium shadow-md transition ml-2"
+            title="Contextual Module Technical Guide &amp; Financial Formula Dossier"
+          >
+            <span className="flex h-4 w-4 items-center justify-center rounded-full bg-cyan-400 text-slate-950 font-bold text-[11px]">i</span>
+            <span className="uppercase tracking-wider font-semibold">Guide</span>
+          </button>
         </div>
 
         {/* Viewport Panels */}
@@ -199,6 +210,13 @@ export default function App() {
             </div>
           </div>
         )}
+      
+      <ContextGuideModal 
+        isOpen={isGuideOpen} 
+        onClose={() => setIsGuideOpen(false)} 
+        activeTab={activeTab === 'feed' ? 'signals' : activeTab} 
+      />
+
       </main>
 
       <footer className="border-t border-slate-800/80 bg-[#0b101b] py-4 text-center text-xs text-slate-500">
