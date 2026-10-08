@@ -195,6 +195,42 @@ def export_stress_report(
     )
 
 
+class SignalReportRequest(BaseModel):
+    headline: str
+    ticker: str
+    event_type: str
+    sentiment_score: float
+    impact_score: float
+    publisher: Optional[str] = "Market Wire"
+    key_drivers: Optional[List[str]] = None
+
+
+@app.post("/api/reports/signal/export", tags=["Executive Reports"])
+def export_signal_alert(req: SignalReportRequest):
+    """Generate and download institutional 1-page CRISIL Event Credit Alert (PDF)."""
+    import tempfile
+    from fastapi.responses import FileResponse
+    from src.modules import generate_signal_alert_report
+
+    temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+    temp_pdf.close()
+    pdf_path = generate_signal_alert_report(
+        headline=req.headline,
+        ticker=req.ticker,
+        event_type=req.event_type,
+        sentiment_score=req.sentiment_score,
+        impact_score=req.impact_score,
+        publisher=req.publisher or "Market Wire",
+        key_drivers=req.key_drivers,
+        output_path=temp_pdf.name
+    )
+    return FileResponse(
+        pdf_path,
+        media_type="application/pdf",
+        filename=f"CRISIL_Credit_Alert_{req.ticker}_{int(req.impact_score)}.pdf"
+    )
+
+
 # Mount React Production Frontend (if built)
 from pathlib import Path
 from fastapi.staticfiles import StaticFiles

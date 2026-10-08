@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { X, TrendingDown, TrendingUp, AlertTriangle, ShieldAlert, Cpu, ArrowRight, Activity, FileText } from 'lucide-react'
+import { X, TrendingDown, TrendingUp, AlertTriangle, ShieldAlert, Cpu, ArrowRight, Activity, FileText, Download } from 'lucide-react'
 
 // Realistic institutional transmission channel mappings
 const TRANSMISSION_PROFILES = {
@@ -57,6 +57,43 @@ export default function SignalDetailModal({ signal, onClose, onNavigateTab }) {
       setWhatIfSentiment(signal.sentiment_score)
     }
   }, [signal])
+
+  const [exportingPdf, setExportingPdf] = React.useState(false)
+
+  async function handleDownloadPdf() {
+    if (!signal) return
+    try {
+      setExportingPdf(true)
+      const res = await fetch('/api/reports/signal/export', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          headline: signal.headline,
+          ticker: signal.ticker,
+          event_type: signal.event_classification,
+          sentiment_score: whatIfSentiment,
+          impact_score: whatIfImpact,
+          publisher: signal.publisher || 'Market Wire',
+          key_drivers: signal.key_drivers
+        })
+      })
+      if (!res.ok) throw new Error('Failed to generate PDF')
+      const blob = await res.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `CRISIL_Credit_Alert_${signal.ticker}_${whatIfImpact}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+    } catch (e) {
+      console.error(e)
+      alert('Could not download PDF alert.')
+    } finally {
+      setExportingPdf(false)
+    }
+  }
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -329,6 +366,16 @@ export default function SignalDetailModal({ signal, onClose, onNavigateTab }) {
           </button>
 
           <div className="flex items-center space-x-2">
+            <button
+              onClick={handleDownloadPdf}
+              disabled={exportingPdf}
+              className="flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-slate-600 transition"
+              title="Download 1-page CRISIL credit risk alert memorandum"
+            >
+              <Download className="w-3.5 h-3.5 text-sky-400" />
+              <span>{exportingPdf ? 'Compiling PDF...' : 'Export 1-Page Credit Alert (PDF)'}</span>
+            </button>
+
             <button
               onClick={() => {
                 onClose()

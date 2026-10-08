@@ -89,3 +89,23 @@ def test_tactical_rebalancer_backtest():
     assert "strategy_sharpe" in bt
     assert len(bt["time_series"]) == 10
 
+
+def test_signal_alert_pdf_generator(tmp_path):
+    from src.modules import generate_signal_alert_report
+    from pathlib import Path
+
+    out_file = str(tmp_path / "signal_alert.pdf")
+    gen_path = generate_signal_alert_report(
+        headline="Antitrust scrutiny on in-app fee commissions",
+        ticker="AAPL",
+        event_type="Regulatory",
+        sentiment_score=-0.75,
+        impact_score=6.0,
+        publisher="Reuters",
+        key_drivers=["antitrust", "investigation"],
+        output_path=out_file
+    )
+    assert Path(gen_path).exists()
+    assert Path(gen_path).stat().st_size > 1000
+
+
