@@ -68,3 +68,24 @@ def test_pdf_report_generator(tmp_path):
 
     assert Path(generated_path).exists()
     assert Path(generated_path).stat().st_size > 1000  # valid PDF generated
+
+
+def test_tactical_rebalancer_backtest():
+    rebalancer = TacticalIndexRebalancer()
+    signals = [
+        RiskSignal(
+            id=f"sig_{i}", ticker="NVDA" if i % 2 == 0 else "AAPL",
+            source_type="news", publisher="Reuters", timestamp="2026-09-28T12:00:00Z",
+            headline="Sample headline", sentiment_score=0.6 if i % 2 == 0 else -0.5,
+            sentiment_label="Positive" if i % 2 == 0 else "Negative",
+            event_classification="Earnings", impact_score=7, confidence_score=0.9, key_drivers=[]
+        )
+        for i in range(10)
+    ]
+    bt = rebalancer.backtest_vs_benchmark(signals)
+    assert "strategy_cumulative_return_pct" in bt
+    assert "benchmark_cumulative_return_pct" in bt
+    assert "alpha_bps" in bt
+    assert "strategy_sharpe" in bt
+    assert len(bt["time_series"]) == 10
+

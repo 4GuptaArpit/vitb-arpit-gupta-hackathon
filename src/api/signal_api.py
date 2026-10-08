@@ -129,6 +129,13 @@ def run_rebalance(request: RebalanceRequest) -> Dict[str, Any]:
     }
 
 
+@app.get("/api/rebalance/backtest", tags=["Module A: Rebalancer"])
+def get_rebalance_backtest(sensitivity_alpha: Optional[float] = Query(0.35, ge=0.05, le=1.0)) -> Dict[str, Any]:
+    """Calculate quantitative alpha, Sharpe ratio, and MDD vs static benchmark."""
+    temp_reb = TacticalIndexRebalancer(sensitivity_alpha=sensitivity_alpha or 0.35)
+    return temp_reb.backtest_vs_benchmark(cached_signals)
+
+
 class StressTestRequest(BaseModel):
     event_type: str
     impact_score: int

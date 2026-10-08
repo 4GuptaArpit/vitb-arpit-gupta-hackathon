@@ -71,9 +71,10 @@ class TacticalIndexRebalancer:
 
         # Initialize current weights from base weights
         self.basket = pd.DataFrame(INDEX_BASKET)
-        self.current_weights: Dict[str, float] = {
+        self.base_weights: Dict[str, float] = {
             row["ticker"]: float(row["base_weight"]) for _, row in self.basket.iterrows()
         }
+        self.current_weights: Dict[str, float] = self.base_weights.copy()
         self.rebalance_history: List[RebalanceEvent] = []
 
     def get_current_state(self) -> pd.DataFrame:
@@ -155,3 +156,61 @@ class TacticalIndexRebalancer:
         normalized[first_key] = round(normalized[first_key] + diff, 6)
 
         return normalized
+
+    def backtest_vs_benchmark(self, signals: List[RiskSignal]) -> Dict[str, Any]:
+        """Calculates quantitative alpha, Sharpe ratio, and drawdown vs static benchmark."""
+        strat_returns = []
+        bench_returns = []
+        timestamps = []
+        temp_weights = self.base_weights.copy()
+
+        for sig in signals:
+            timestamps.append(sig.timestamp[:19] if sig.timestamp else "N/A")
+            # Conditioned asset return = sentiment * (impact / 10) * 0.025
+            asset_ret = sig.sentiment_score * (sig.impact_score / 10.0) * 0.025
+            bench_ret = asset_ret * self.base_weights.get(sig.ticker, 0.05)
+            bench_returns.append(bench_ret)
+
+            # Strategy dynamic weight allocation
+            adj = 1.0 + (self.sensitivity_alpha * sig.sentiment_score)
+            tentative = temp_weights.get(sig.ticker, 0.05) * adj
+            raw = temp_weights.copy()
+            raw[sig.ticker] = tentative
+            temp_weights = self._normalize_and_clamp(raw)
+
+            strat_ret = asset_ret * temp_weights.get(sig.ticker, 0.05)
+            strat_returns.append(strat_ret)
+
+        strat_cum = np.cumsum(strat_returns) if strat_returns else np.array([0.0])
+        bench_cum = np.cumsum(bench_returns) if bench_returns else np.array([0.0])
+
+        total_strat = float(strat_cum[-1]) if len(strat_cum) else 0.0
+        total_bench = float(bench_cum[-1]) if len(bench_cum) else 0.0
+        alpha_bps = float((total_strat - total_bench) * 10000.0)
+
+        vol_s = float(np.std(strat_returns) * np.sqrt(252)) if len(strat_returns) > 1 and np.std(strat_returns) > 0 else 0.01
+        vol_b = float(np.std(bench_returns) * np.sqrt(252)) if len(bench_returns) > 1 and np.std(bench_returns) > 0 else 0.01
+        n = max(len(strat_returns), 1)
+        sharpe_strat = float((total_strat * 252 / n - 0.045) / vol_s)
+        sharpe_bench = float((total_bench * 252 / n - 0.045) / vol_b)
+
+        peak_s = np.maximum.accumulate(strat_cum)
+        peak_b = np.maximum.accumulate(bench_cum)
+        mdd_s = float(np.min(strat_cum - peak_s)) if len(strat_cum) else 0.0
+        mdd_b = float(np.min(bench_cum - peak_b)) if len(bench_cum) else 0.0
+
+        return {
+            "strategy_cumulative_return_pct": round(total_strat * 100.0, 3),
+            "benchmark_cumulative_return_pct": round(total_bench * 100.0, 3),
+            "alpha_bps": round(alpha_bps, 1),
+            "alpha_percentage": round((total_strat - total_bench) * 100.0, 3),
+            "strategy_sharpe": round(sharpe_strat, 2),
+            "benchmark_sharpe": round(sharpe_bench, 2),
+            "strategy_max_drawdown_pct": round(mdd_s * 100.0, 3),
+            "benchmark_max_drawdown_pct": round(mdd_b * 100.0, 3),
+            "time_series": [
+                {"timestamp": t, "strategy_cum_pct": round(float(s) * 100.0, 3), "benchmark_cum_pct": round(float(b) * 100.0, 3)}
+                for t, s, b in zip(timestamps, strat_cum, bench_cum)
+            ]
+        }
+
