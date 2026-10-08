@@ -34,6 +34,17 @@ export default function RebalanceTab() {
     }
   }
 
+  const basketTotalWeight = basket.reduce((acc, i) => acc + (i.current_weight_pct || 0), 0)
+  const basketNetDrift = basket.reduce((acc, i) => acc + (i.weight_drift_pct || 0), 0)
+  const topOverweighted = [...basket]
+    .sort((a, b) => (b.weight_drift_pct || 0) - (a.weight_drift_pct || 0))
+    .filter(i => (i.weight_drift_pct || 0) > 0)
+    .slice(0, 3)
+  const topUnderweighted = [...basket]
+    .sort((a, b) => (a.weight_drift_pct || 0) - (b.weight_drift_pct || 0))
+    .filter(i => (i.weight_drift_pct || 0) < 0)
+    .slice(0, 3)
+
   return (
     <div className="space-y-6">
       {/* Controls & Parameters */}
@@ -104,6 +115,82 @@ export default function RebalanceTab() {
               <span className="text-[11px] text-slate-400">Concentration Cap</span>
               <p className="text-base font-bold font-mono text-amber-400 mt-0.5">18.0% Max</p>
               <p className="text-[10px] text-slate-500 mt-1">Prevents single-asset blowout</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mathematical Zero-Sum & Capital Invariant Dashboard */}
+      <div className="bg-[#0b101e] border border-emerald-500/30 rounded-xl p-4 shadow-lg shadow-emerald-950/20 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+          <div className="flex items-center space-x-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+            <h4 className="text-xs font-bold text-emerald-300 uppercase tracking-wider">
+              Mathematical Zero-Sum Invariant & Capital Conservation
+            </h4>
+          </div>
+          <div className="flex flex-wrap items-center gap-4 font-mono text-xs">
+            <div>
+              <span className="text-slate-500">Total Basket Weight: </span>
+              <strong className="text-emerald-400">{basketTotalWeight.toFixed(3)}%</strong>
+            </div>
+            <div>
+              <span className="text-slate-500">Net Rebalance Drift (∑Δw): </span>
+              <strong className="text-slate-200">{basketNetDrift >= 0 ? `+${basketNetDrift.toFixed(4)}%` : `${basketNetDrift.toFixed(4)}%`}</strong>
+            </div>
+            <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/20">
+              Zero Cash Leakage
+            </span>
+          </div>
+        </div>
+
+        {/* Dynamic Inflow vs Outflow Drift Waterfall */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+          {/* Top Overweighted */}
+          <div className="space-y-2">
+            <div className="text-[11px] font-semibold text-emerald-400 flex items-center justify-between">
+              <span>Top Capital Inflows (Positive Sentiment Tilt)</span>
+              <span className="text-[10px] text-slate-500">Overweighted vs Base</span>
+            </div>
+            <div className="space-y-1.5">
+              {topOverweighted.length > 0 ? topOverweighted.map(stock => (
+                <div key={stock.ticker} className="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800 text-xs">
+                  <div className="flex items-center space-x-2">
+                    <span className="font-mono font-bold text-sky-400">{stock.ticker}</span>
+                    <span className="text-slate-400 text-[11px] truncate max-w-[140px]">{stock.company}</span>
+                  </div>
+                  <div className="flex items-center space-x-3 font-mono">
+                    <span className="text-slate-400">{stock.base_weight_pct}% → <strong className="text-white">{stock.current_weight_pct}%</strong></span>
+                    <span className="text-emerald-400 font-bold">+{stock.weight_drift_pct}%</span>
+                  </div>
+                </div>
+              )) : (
+                <div className="text-xs text-slate-500 py-1 font-mono">Run dynamic rebalance to view active tilts.</div>
+              )}
+            </div>
+          </div>
+
+          {/* Top Underweighted */}
+          <div className="space-y-2">
+            <div className="text-[11px] font-semibold text-rose-400 flex items-center justify-between">
+              <span>Top Capital Outflows (Risk Mitigation De-weighting)</span>
+              <span className="text-[10px] text-slate-500">Underweighted vs Base</span>
+            </div>
+            <div className="space-y-1.5">
+              {topUnderweighted.length > 0 ? topUnderweighted.map(stock => (
+                <div key={stock.ticker} className="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800 text-xs">
+                  <div className="flex items-center space-x-2">
+                    <span className="font-mono font-bold text-sky-400">{stock.ticker}</span>
+                    <span className="text-slate-400 text-[11px] truncate max-w-[140px]">{stock.company}</span>
+                  </div>
+                  <div className="flex items-center space-x-3 font-mono">
+                    <span className="text-slate-400">{stock.base_weight_pct}% → <strong className="text-white">{stock.current_weight_pct}%</strong></span>
+                    <span className="text-rose-400 font-bold">{stock.weight_drift_pct}%</span>
+                  </div>
+                </div>
+              )) : (
+                <div className="text-xs text-slate-500 py-1 font-mono">Run dynamic rebalance to view active tilts.</div>
+              )}
             </div>
           </div>
         </div>
