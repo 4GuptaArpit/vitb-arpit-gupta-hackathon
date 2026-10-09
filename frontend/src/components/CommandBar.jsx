@@ -14,10 +14,8 @@ export default function CommandBar({ isOpen, onClose, onExecuteMnemonic }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if (e.key === 'Escape' && isOpen) {
         e.preventDefault();
-        onClose(!isOpen);
-      } else if (e.key === 'Escape' && isOpen) {
         onClose(false);
       }
     };

@@ -227,8 +227,9 @@ class TacticalIndexRebalancer:
             strategy_weights = self.current_weights
 
         sector_data = {}
+        sector_map = dict(zip(self.basket['ticker'], self.basket['sector'])) if hasattr(self, 'basket') and hasattr(self.basket, 'columns') else {}
         for ticker, bench_w in self.base_weights.items():
-            sec = self.basket.get(ticker, {}).get('sector', 'Financials') if hasattr(self, 'basket') else 'General'
+            sec = sector_map.get(ticker, 'General')
             strat_w = strategy_weights.get(ticker, 0.0)
 
             sec_seed = abs(hash(sec)) % 100
