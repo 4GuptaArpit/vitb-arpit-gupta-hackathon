@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: riskpulse-ai
+    runtime: python
+    buildCommand: "pip install -r requirements.txt && cd frontend && npm install && node node_modules/vite/bin/vite.js build && cd .."
+    startCommand: "uvicorn src.api.signal_api:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: NODE_VERSION
+        value: 20.11.0
