@@ -9,6 +9,11 @@ export async function fetchHealth() {
   return res.json()
 }
 
+export async function triggerRefreshSignals() {
+  const res = await fetch(`${API_BASE}/signals/refresh`, { method: 'POST' })
+  return res.json()
+}
+
 export async function fetchSignals(limit = 100, eventType = null, minImpact = null) {
   let url = `${API_BASE}/signals?limit=${limit}`
   if (eventType && eventType !== 'All') url += `&event_type=${encodeURIComponent(eventType)}`

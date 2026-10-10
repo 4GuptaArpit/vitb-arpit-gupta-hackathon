@@ -10,12 +10,46 @@ export default function SignalFeedTab({ signals, onNavigateTab }) {
 
   const events = ['All', 'Geopolitical', 'Credit Event', 'Macroeconomic', 'Regulatory', 'Merger/Acquisition', 'Product Launch']
 
+  const COMPANY_MAP = {
+    'AAPL': 'Apple Inc.',
+    'MSFT': 'Microsoft Corp.',
+    'NVDA': 'NVIDIA Corp.',
+    'AMZN': 'Amazon.com Inc.',
+    'GOOGL': 'Alphabet Google Inc.',
+    'META': 'Meta Platforms Facebook Inc.',
+    'TSLA': 'Tesla Inc.',
+    'JPM': 'JPMorgan Chase & Co.',
+    'V': 'Visa Inc.',
+    'XOM': 'Exxon Mobil Corp.',
+    'CVX': 'Chevron Corp.',
+    'UNH': 'UnitedHealth Group',
+    'JNJ': 'Johnson & Johnson',
+    'PFE': 'Pfizer Inc.',
+    'WMT': 'Walmart Inc.',
+    'PG': 'Procter & Gamble Co.',
+    'CAT': 'Caterpillar Inc.',
+    'BA': 'Boeing Co.',
+    'HD': 'Home Depot Inc.',
+    'DIS': 'Walt Disney Co.'
+  }
+
   const filtered = signals.filter(s => {
     const matchesEvent = selectedEvent === 'All' || s.event_classification === selectedEvent
     const matchesImpact = s.impact_score >= minImpact
-    const matchesSearch = searchTerm === '' ||
-      s.ticker.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      s.headline.toLowerCase().includes(searchTerm.toLowerCase())
+    const term = searchTerm.trim().toLowerCase()
+    const company = (COMPANY_MAP[s.ticker] || '').toLowerCase()
+    const headline = (s.headline || '').toLowerCase()
+    const text = (s.text || '').toLowerCase()
+    const ticker = (s.ticker || '').toLowerCase()
+    const publisher = (s.publisher || '').toLowerCase()
+
+    const matchesSearch = term === '' ||
+      ticker.includes(term) ||
+      company.includes(term) ||
+      headline.includes(term) ||
+      text.includes(term) ||
+      publisher.includes(term)
+
     return matchesEvent && matchesImpact && matchesSearch
   })
 
@@ -80,6 +114,11 @@ export default function SignalFeedTab({ signals, onNavigateTab }) {
                 <span className="text-xs text-slate-500 font-mono">
                   {sig.publisher}
                 </span>
+                {sig.timestamp && (
+                  <span className="text-[10px] text-slate-500 font-mono px-1.5 py-0.5 rounded bg-slate-900 border border-slate-800">
+                    {sig.timestamp.includes('T') ? sig.timestamp.slice(11, 16) + ' UTC' : 'Live'}
+                  </span>
+                )}
               </div>
 
               <div className="flex items-center space-x-2">

@@ -7,7 +7,7 @@ import SignalFeedTab from './components/SignalFeedTab'
 import RebalanceTab from './components/RebalanceTab'
 import StressTestTab from './components/StressTestTab'
 import AdhocTab from './components/AdhocTab'
-import { fetchHealth, fetchSignals } from './api'
+import { fetchHealth, fetchSignals, triggerRefreshSignals } from './api'
 import { Radio, BarChart3, Landmark, Sparkles, LayoutGrid, Columns } from 'lucide-react'
 
 export default function App() {
@@ -50,11 +50,14 @@ export default function App() {
     checkHealthAndLoad()
   }, [])
 
-  async function checkHealthAndLoad() {
+  async function checkHealthAndLoad(isUserRefresh = false) {
     setLoading(true)
     try {
       await fetchHealth()
       setIsConnected(true)
+      if (isUserRefresh) {
+        await triggerRefreshSignals()
+      }
       const data = await fetchSignals(100)
       setSignals(data)
     } catch (e) {
@@ -74,7 +77,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#080c14] text-slate-100 flex flex-col font-sans">
-      <Navbar isConnected={isConnected} onRefresh={checkHealthAndLoad} loading={loading} />
+      <Navbar isConnected={isConnected} onRefresh={() => checkHealthAndLoad(true)} loading={loading} />
       <KpiBar signals={signals} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-6 py-4 space-y-6">

@@ -117,7 +117,7 @@ class IngestionPipeline:
         self.news_ingester = NewsIngester(news_path)
         self.social_ingester = SocialIngester(social_path)
 
-    def run(self, include_live: bool = False, live_tickers: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+    def run(self, include_live: bool = False, live_tickers: Optional[List[str]] = None, newest_first: bool = False) -> List[Dict[str, Any]]:
         """Execute unified ingestion across local news, social, and optional live feeds."""
         stream: List[Dict[str, Any]] = []
         stream.extend(self.news_ingester.fetch_local())
@@ -127,6 +127,6 @@ class IngestionPipeline:
             for ticker in live_tickers:
                 stream.extend(self.news_ingester.fetch_live_headlines(ticker))
 
-        # Sort chronologically by timestamp
-        stream.sort(key=lambda x: x.get("timestamp", ""))
+        # Sort chronologically
+        stream.sort(key=lambda x: x.get("timestamp", ""), reverse=newest_first)
         return stream

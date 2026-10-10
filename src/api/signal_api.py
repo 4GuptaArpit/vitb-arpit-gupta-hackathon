@@ -36,7 +36,7 @@ cached_signals: List[RiskSignal] = []
 
 def refresh_signals():
     global cached_signals
-    stream = pipeline.run()
+    stream = pipeline.run(newest_first=True)
     cached_signals = engine.process_stream(stream)
 
 
@@ -88,20 +88,67 @@ def get_signals_by_ticker(symbol: str) -> List[Dict[str, Any]]:
     return matching
 
 
+@app.post("/signals/refresh", tags=["Signals"])
+def trigger_refresh_signals() -> Dict[str, Any]:
+    """Dynamically simulate fresh incoming market wires and refresh signal stream."""
+    import random
+    from datetime import datetime, timezone
+
+    # Curated stream of breaking market wire bulletins to inject on user reload
+    BREAKING_BULLETINS = [
+        {"ticker": "AAPL", "headline": "Apple secures breakthrough generative AI enterprise supplier contract with global financial institutions", "publisher": "Bloomberg Terminal", "event_hint": "Product Launch", "engagement": 380},
+        {"ticker": "NVDA", "headline": "NVIDIA unveils next-gen Blackwell Ultra tensor architecture with 40% inference efficiency gains", "publisher": "Reuters Wire", "event_hint": "Product Launch", "engagement": 420},
+        {"ticker": "JPM", "headline": "RBI and US Federal Reserve coordinate liquidity protocol for cross-border wholesale settlement", "publisher": "Financial Times", "event_hint": "Regulatory", "engagement": 290},
+        {"ticker": "MSFT", "headline": "Microsoft Cloud Azure revenue accelerates beyond consensus on enterprise sovereign AI contracts", "publisher": "Wall Street Journal", "event_hint": "Product Launch", "engagement": 340},
+        {"ticker": "XOM", "headline": "Energy supply lines normalize as transit risk premiums ease across key trade corridors", "publisher": "Dow Jones Newswires", "event_hint": "Macroeconomic", "engagement": 260},
+        {"ticker": "TSLA", "headline": "Regulatory authorities grant commercial autonomous fleet testing license in key metropolitan corridors", "publisher": "Reuters Wire", "event_hint": "Regulatory", "engagement": 450},
+        {"ticker": "AMZN", "headline": "Amazon Web Services completes massive multi-region sovereign cloud deployment for European public sector", "publisher": "Financial Times", "event_hint": "Product Launch", "engagement": 310},
+    ]
+
+    bulletin = random.choice(BREAKING_BULLETINS)
+    now_iso = datetime.now(timezone.utc).isoformat()
+    new_item = {
+        "id": f"live_wire_{int(datetime.now().timestamp())}",
+        "ticker": bulletin["ticker"],
+        "source_type": "breaking_wire",
+        "publisher": bulletin["publisher"],
+        "timestamp": now_iso,
+        "headline": bulletin["headline"],
+        "text": bulletin["headline"],
+        "event_hint": bulletin["event_hint"],
+        "engagement_score": bulletin["engagement"]
+    }
+    new_sig = engine.process_item(new_item)
+    
+    # Prepend breaking signal at top of live cache
+    global cached_signals
+    cached_signals.insert(0, new_sig)
+    
+    return {
+        "status": "refreshed",
+        "total_count": len(cached_signals),
+        "new_signal": new_sig.to_dict()
+    }
+
+
 @app.post("/signals/analyze", tags=["Signals"])
 def analyze_text(request: AnalyzeRequest) -> Dict[str, Any]:
     """Analyze ad-hoc financial news or text in real-time and return structured RiskSignal."""
+    from datetime import datetime, timezone
     item = {
-        "id": "adhoc_input",
+        "id": f"adhoc_{int(datetime.now().timestamp())}",
         "ticker": request.ticker.upper() if request.ticker else "GENERAL",
         "source_type": "adhoc_api",
         "publisher": request.publisher,
-        "timestamp": "",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "headline": request.text[:100],
         "text": request.text,
         "engagement_score": request.engagement
     }
     signal = engine.process_item(item)
+    # Prepend ad-hoc signal into live feed so it immediately reflects in the UI
+    global cached_signals
+    cached_signals.insert(0, signal)
     return signal.to_dict()
 
 
@@ -146,7 +193,7 @@ def get_rebalance_backtest(sensitivity_alpha: Optional[float] = Query(0.35, ge=0
 
 class StressTestRequest(BaseModel):
     event_type: str
-    impact_score: int
+    impact_score: float
     target_sector: Optional[str] = None
 
 
