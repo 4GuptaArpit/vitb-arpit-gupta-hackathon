@@ -7,7 +7,6 @@
 **🌐 Live Production Web App:** [https://riskpulse-ai-l3rp.onrender.com](https://riskpulse-ai-l3rp.onrender.com)  
 **🎬 3-Minute Demo Video:** [https://youtu.be/qexDR0y0TQw](https://youtu.be/qexDR0y0TQw)  
 **📊 Slide Deck:** [docs/presentation.pdf](docs/presentation.pdf)  
-**🏆 Jury Evaluation Quickstart Guide:** [docs/JURY_TEST_GUIDE.md](docs/JURY_TEST_GUIDE.md)  
 
 ---
 
