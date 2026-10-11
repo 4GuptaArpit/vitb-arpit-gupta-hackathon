@@ -4,8 +4,9 @@
 **College Email ID:** arpit.23bce10791@vitbhopal.ac.in  
 **Personal Email ID:** 2004arpitgupta@gmail.com  
 **College / Campus:** Vellore Institute of Technology, Bhopal  
-**Demo Video Link:** [YouTube / Unlisted](https://youtu.be/placeholder)  
-**Slide Deck Link (if hosted externally):** [docs/presentation.pdf](docs/presentation.pdf)  
+**🌐 Live Production Web App:** [https://riskpulse-ai-l3rp.onrender.com](https://riskpulse-ai-l3rp.onrender.com)  
+**🎬 3-Minute Demo Video:** [https://youtu.be/qexDR0y0TQw](https://youtu.be/qexDR0y0TQw)  
+**📊 Slide Deck:** [docs/presentation.pdf](docs/presentation.pdf)  
 **🏆 Jury Evaluation Quickstart Guide:** [docs/JURY_TEST_GUIDE.md](docs/JURY_TEST_GUIDE.md)  
 
 ---
