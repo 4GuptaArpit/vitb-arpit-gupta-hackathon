@@ -447,58 +447,36 @@ def build_presentation(output_path="docs/presentation.pdf"):
     story.append(PageBreak())
 
     # =========================================================================
-    # SLIDE 7: Enterprise Ergonomics, Cloud Architecture & Durability
+    # SLIDE 7: Engineering Testing, Deployment & Future Improvements
     # =========================================================================
-    story.append(Paragraph("Slide 7: Enterprise Ergonomics, Verification & Cloud Architecture", style_slide_title))
-    story.append(Paragraph("Institutional Terminal Design with Continuous Cloud Deployment & Automated Auditing", style_slide_sub))
+    story.append(Paragraph("Slide 7: Testing, Deployment & What's Next", style_slide_title))
+    story.append(Paragraph("Practical Engineering Choices, Automated Verification, and Planned Improvements", style_slide_sub))
 
-    c_prod1 = [
-        Paragraph("Institutional Ergonomics & Frontend UX", style_card_title),
-        Paragraph("<b>• Bloomberg 4-Quadrant Command Desk:</b> Instant toggle between focused tabbed views and unified 4-quadrant executive surveillance.", style_bullet),
-        Paragraph("<b>• Bloomberg Command Bar (Ctrl+K):</b> Fast keyboard-first terminal navigation supporting institutional mnemonics (`QUADRANT <GO>`, `STRESS <GO>`).", style_bullet),
-        Paragraph("<b>• Dynamic Company Alias Resolution:</b> Search automatically resolves natural company names ('Apple', 'Microsoft') to official tickers.", style_bullet),
-        Paragraph("<b>• Zero Layout Jitter:</b> Tabular numerical figures (`tnum`) ensure streaming data updates do not cause UI reflows.", style_bullet)
+    col_s7_1 = [
+        Paragraph("Terminal Design & Usability", style_card_title),
+        Paragraph("<b>• 4-Quadrant & Tabbed Views:</b> Toggle easily between focused module tabs and an all-in-one market surveillance dashboard.", style_bullet),
+        Paragraph("<b>• Keyboard Shortcuts (Ctrl+K):</b> Quick command bar for keyboard users with instant actions (`REBALANCE`, `STRESS`, `EXPORT`).", style_bullet),
+        Paragraph("<b>• Stable Tables:</b> Monospace tabular numbers prevent layout shifting when market figures recalculate.", style_bullet),
+        Paragraph("<b>• Instant PDF Reports:</b> Clean, one-click PDF generation for executive credit memos and portfolio reviews.", style_bullet)
     ]
 
-    c_prod2 = [
-        Paragraph("Production Durability & Verification", style_card_title),
-        Paragraph("<b>• 100% Offline Durability:</b> Operates completely autonomously without paid external API keys, eliminating runtime cost and rate-limit failures.", style_bullet),
-        Paragraph("<b>• 25/25 Pytest Automated Test Coverage:</b> Rigorous unit, integration, invariant, and security injection test suites passing in 5.1s.", style_bullet),
-        Paragraph("<b>• Live Render Deployment:</b> Continuous delivery pipeline automatically builds and serves the unified web service.", style_bullet),
-        Paragraph("<b>• Uptime Monitoring:</b> UptimeRobot 14-minute keep-alive ping eliminates cloud cold-starts, guaranteeing sub-second jury load times.", style_bullet)
+    col_s7_2 = [
+        Paragraph("Testing & Reliability", style_card_title),
+        Paragraph("<b>• Fully Autonomous:</b> Works reliably without third-party API keys, avoiding unexpected rate limits and cloud costs.", style_bullet),
+        Paragraph("<b>• 25 Automated Pytest Tests:</b> Covers math invariants, zero cash leakage, edge cases, and API routes in 5.1 seconds.", style_bullet),
+        Paragraph("<b>• Continuous Live Deployment:</b> Hosted live on Render with automated builds on git push.", style_bullet),
+        Paragraph("<b>• Fast Load Times:</b> Keep-alive health ping keeps the backend warm so judges see instant responses.", style_bullet)
     ]
 
-    story.append(make_two_column_cards(c_prod1, c_prod2, col_widths=(350, 350)))
-    story.append(PageBreak())
-
-    # =========================================================================
-    # SLIDE 8: Conclusion & Strategic Roadmap
-    # =========================================================================
-    story.append(Paragraph("Slide 8: Conclusion, Limitations & Strategic Roadmap", style_slide_title))
-    story.append(Paragraph("Production Readiness and Vision for Enterprise Scaling at S&P Global and CRISIL", style_slide_sub))
-
-    col_fut1 = [
-        Paragraph("Current Assumptions", style_card_title),
-        Paragraph("<b>Curated Synthetic Base:</b> Prototype operates on synthetic news, social commentary, and loan assets to avoid proprietary data exposure.", style_card_body),
-        Paragraph("<b>Bullet Loan Maturities:</b> Fixed duration models assume non-amortizing loan facilities.", style_card_body),
-        Paragraph("<b>Factor-Based Shocks:</b> Stress testing applies regulatory factor multipliers rather than dynamic copula distributions.", style_card_body)
+    col_s7_3 = [
+        Paragraph("What's Next (Planned Upgrades)", style_card_title),
+        Paragraph("<b>• Live Feed Streaming:</b> Asynchronous WebSocket pipelines to stream live news and price ticks in real time.", style_bullet),
+        Paragraph("<b>• Multilingual NLP:</b> Expanding sentiment models to cover European and Asian regulatory press releases.", style_bullet),
+        Paragraph("<b>• Interbank Network Effects:</b> Simulating default contagion across connected banking institutions.", style_bullet),
+        Paragraph("<b>• Institutional Alignment:</b> Tailored to real-world risk workflows at S&P Global and CRISIL.", style_bullet)
     ]
 
-    col_fut2 = [
-        Paragraph("Enterprise Roadmap", style_card_title),
-        Paragraph("<b>Kafka Streaming Bus:</b> Scalable streaming ingest supporting 100,000+ msgs/sec from global Reuters and Bloomberg firehoses.", style_card_body),
-        Paragraph("<b>Cross-Lingual FinBERT:</b> Multi-lingual sentiment extraction covering Japanese, European, and emerging market regulatory bourses.", style_card_body),
-        Paragraph("<b>Counterparty Contagion:</b> Graph neural network (GNN) modeling for interbank CDS default cascades.", style_card_body)
-    ]
-
-    col_fut3 = [
-        Paragraph("Championship Verdict", style_card_title),
-        Paragraph("<b>Domain Alignment:</b> 100% aligned with S&P Global and CRISIL risk evaluation methodologies.", style_card_body),
-        Paragraph("<b>Mathematical Rigor:</b> Proven zero cash leakage and Basel III statutory compliance.", style_card_body),
-        Paragraph("<b>Verified Delivery:</b> Live cloud deployment, video presentation, and clean open-source code.", style_card_body)
-    ]
-
-    story.append(make_three_column_cards(col_fut1, col_fut2, col_fut3, col_widths=(230, 230, 230)))
+    story.append(make_three_column_cards(col_s7_1, col_s7_2, col_s7_3, col_widths=(230, 230, 230)))
 
     # Build document using NumberedCanvas
     doc.build(story, canvasmaker=NumberedCanvas)
